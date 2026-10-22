@@ -1,0 +1,1416 @@
+<!--
+  ================================================================
+  THE TWO-OFFER BUSINESS | Landing page block for GHL (v33)
+  pdotj.co | Prathamesh Jiwatode
+  ----------------------------------------------------------------
+  HOW TO USE IN GHL:
+  1. Open your Custom HTML/JS element, SELECT ALL of the old code,
+     delete it, and paste this ENTIRE file. One paste, nothing else.
+  2. Keep your native 2-step order form directly below this block.
+     Every button scrolls to the order form: #two-step-order-6kd5Sgoecu
+  3. All styles are scoped to .tob, so nothing leaks into the rest
+     of your GHL page or the order form.
+  4. For the pre-headline to touch the top edge, set the TOP padding
+     of the GHL section, row and column that hold this element to 0.
+  ----------------------------------------------------------------
+  v33:
+  - HERO, mobile headline only: looser line spacing (1.12 to 1.4),
+       slightly smaller type, looser letter spacing, and a small gap
+       between the 5 headline rows. Each row now fits on one line on
+       phones. All of it sits in a max-width:699px block, so desktop
+       (700px and up) is not touched.
+  - Everything else: same as v32.
+  ----------------------------------------------------------------
+  v32:
+  - 1. Why sales stall: copy cut to 1 line. New visual: 2 sales
+       charts side by side. Bars grow when the chart comes into view.
+       The 3-beat strip is removed (it said the same thing again).
+  - 2. 5 decisions: the number now sits in the top-left corner of
+       each card. No side column, no dashed line. Cards no longer
+       spill past the right edge on phones.
+  - 2. "The 5-module guide" tile: new visual. A fan of 5 cards.
+  - Spacing: less empty space between and inside sections, mostly
+       on phones.
+  - Plain-word pass on all copy below the hero.
+  ================================================================
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+.tob{
+  --paper:#FFFCF7; --cream:#F1E4D5; --card:#F5F0E9; --line-l:#E6DED3;
+  --ink:#1A1918; --ink-2:#262422; --line-d:#3A3733;
+  --orange:#E07B35; --orange-hi:#EA8741; --orange-d:#A4521F; --orange-soft:#F7D6BB;
+  --rust:#A8521E; --rust-hl:#E4560A; --tan:#D3B99E;
+  --teal:#0A6B5D; --teal-hi:#2FA38F; --teal-soft:#D7ECE7;
+  --red:#D93A2B; --red-soft:#FBE3DF;
+  --text:#1A1918; --body:#3E3A35; --muted:#6E675F;
+  --d-1:#FFFFFF; --d-2:#D8D1C8; --d-3:#A79F95; --d-accent:#EE9150;
+  --display:"Inter Tight","Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--paper);color:var(--text);font-family:var(--sans);font-size:18px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;width:100%;
+}
+.tob *,.tob *::before,.tob *::after{box-sizing:border-box}
+.tob img,.tob svg{max-width:100%}
+.tob a{color:inherit}
+:where(.tob) p{margin:0 0 16px}
+:where(.tob) ul,:where(.tob) ol{margin:0;padding:0;list-style:none}
+.tob h1,.tob h2,.tob h3{font-family:var(--display);font-weight:800;margin:0;color:inherit}
+.tob h1{font-size:clamp(2.5rem,9.6vw,4.6rem);line-height:.98;letter-spacing:-.045em;margin-bottom:24px;max-width:14ch}
+.tob h2{font-size:clamp(2.05rem,7.4vw,3.5rem);line-height:1.03;letter-spacing:-.042em;margin-bottom:16px;max-width:18ch}
+.tob h3{font-size:1.28rem;line-height:1.2;letter-spacing:-.02em;margin-bottom:6px}
+.tob strong{font-weight:700;color:var(--text)}
+.tob-ink strong{color:var(--d-1)}
+.tob-wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 20px}
+.tob-narrow{max-width:820px}
+.tob-sec{padding:60px 0;position:relative}
+@media (min-width:860px){.tob-sec{padding:88px 0}}
+.tob-paper{background:var(--paper)}
+.tob-cream{background:var(--cream)}
+.tob-ink{background:var(--ink);color:var(--d-1)}
+.tob-center{text-align:center}
+.tob-center h2,.tob-center .tob-lede{margin-left:auto;margin-right:auto}
+
+.tob-eyebrow{font-family:var(--sans);font-weight:700;font-size:.8rem;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;color:var(--rust);margin:0 0 12px}
+.tob-ink .tob-eyebrow{color:var(--d-accent)}
+.tob-hl{color:var(--rust-hl);text-shadow:0 0 22px rgba(255,100,10,.28)}
+.tob-ink .tob-hl{color:#FF7A2B;text-shadow:0 0 26px rgba(255,122,43,.5)}
+.tob-mark{background:linear-gradient(transparent 56%, var(--orange-soft) 56%);padding:0 .1em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.tob-ink .tob-mark{background:linear-gradient(transparent 58%, rgba(224,123,53,.42) 58%)}
+.tob-lede{font-size:clamp(1.08rem,3.8vw,1.24rem);line-height:1.55;color:var(--body);max-width:38em}
+.tob-ink .tob-lede{color:var(--d-2)}
+.tob-lines{max-width:36em}
+.tob-lines p{font-size:clamp(1.08rem,3.9vw,1.24rem);line-height:1.5;margin:0 0 12px;color:var(--body)}
+.tob-ink .tob-lines p{color:var(--d-2)}
+.tob-lines .gap{margin-top:24px}
+.tob-lines .hit{font-family:var(--display);font-weight:800;font-size:clamp(1.28rem,4.6vw,1.55rem);letter-spacing:-.025em;line-height:1.25;color:var(--text)}
+.tob-ink .tob-lines .hit{color:var(--d-1)}
+.tob-sub-h{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,5.6vw,2.3rem);letter-spacing:-.04em;line-height:1.08;margin:0 0 10px}
+.tob-small{font-size:.86rem;line-height:1.5;color:var(--muted);margin:14px 0 0}
+.tob-ink .tob-small{color:var(--d-3)}
+.tob-tag{display:inline-block;font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:4px 10px;line-height:1.3}
+.tob-ic{width:20px;height:20px;flex:none}
+
+/* Buttons */
+.tob-btn{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:62px;padding:16px 30px;border-radius:12px;border:0;background:var(--orange);color:#161514;font-family:var(--display);font-weight:800;font-size:1.12rem;letter-spacing:-.01em;line-height:1.2;text-decoration:none;text-align:center;box-shadow:0 6px 0 var(--orange-d);transition:transform .12s ease,box-shadow .12s ease,background .12s ease;cursor:pointer}
+.tob-btn:hover{background:var(--orange-hi);transform:translateY(2px);box-shadow:0 4px 0 var(--orange-d)}
+.tob-btn:active{transform:translateY(6px);box-shadow:0 0 0 var(--orange-d)}
+.tob-btn svg{width:20px;height:20px;flex:none}
+.tob-btn:focus-visible{outline:3px solid var(--text);outline-offset:5px}
+.tob-ink .tob-btn:focus-visible{outline-color:#fff}
+.tob-cta-row{margin-top:32px;display:flex;flex-direction:column;align-items:stretch;gap:14px}
+@media (min-width:560px){.tob-cta-row{align-items:flex-start}}
+@media (min-width:860px){.tob-cta-row{margin-top:40px}}
+.tob-center .tob-cta-row{align-items:center}
+.tob-micro{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:.95rem;color:var(--muted)}
+.tob-ink .tob-micro{color:var(--d-3)}
+.tob-micro li{display:flex;align-items:center;gap:7px}
+.tob-micro svg{width:16px;height:16px;flex:none;color:var(--orange)}
+
+.tob-av{flex:none;width:44px;height:44px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--line-l);background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.92rem;letter-spacing:-.02em}
+.tob-av img{width:100%;height:100%;object-fit:cover;display:block}
+.tob-handle{color:var(--rust);font-weight:700;text-decoration:none}
+
+/* ---------- Ticker ---------- */
+.tob-ticker{position:relative;z-index:2;overflow:hidden;padding:8px 0;color:#fff;
+  background:radial-gradient(60% 160% at 50% 50%,rgba(255,122,43,.14),transparent 72%),#171514;
+  border-top:1px solid rgba(255,138,61,.55);border-bottom:1px solid rgba(255,138,61,.55);
+  box-shadow:0 0 14px rgba(255,122,43,.32),0 0 38px rgba(255,122,43,.16),inset 0 0 18px rgba(255,122,43,.1);
+  animation:tob-glow 4.5s ease-in-out infinite alternate}
+.tob-ticker::before,.tob-ticker::after{content:"";position:absolute;top:0;bottom:0;width:44px;z-index:1;pointer-events:none}
+.tob-ticker::before{left:0;background:linear-gradient(90deg,#171514,rgba(23,21,20,0))}
+.tob-ticker::after{right:0;background:linear-gradient(270deg,#171514,rgba(23,21,20,0))}
+.tob-track{display:flex;width:max-content;animation:tob-marquee 60s linear infinite}
+.tob-ticker:hover .tob-track{animation-play-state:paused}
+.tob-track ul{display:flex;align-items:center;flex:none}
+.tob-track li{display:flex;align-items:center;white-space:nowrap;font-family:var(--display);font-weight:600;font-size:.78rem;line-height:1.3;letter-spacing:.01em;color:#D9D2C8;text-shadow:0 0 10px rgba(255,255,255,.14);padding-right:18px}
+.tob-track li b{font-weight:800;color:#FF9248;text-shadow:0 0 4px rgba(255,138,61,.7),0 0 12px rgba(255,122,43,.5)}
+.tob-track li::after{content:"";flex:none;width:5px;height:5px;background:#FF8A3D;transform:rotate(45deg);margin-left:18px;box-shadow:0 0 6px 1px rgba(255,138,61,.95),0 0 14px 2px rgba(255,122,43,.5)}
+@keyframes tob-marquee{to{transform:translateX(-50%)}}
+@keyframes tob-glow{from{box-shadow:0 0 10px rgba(255,122,43,.22),0 0 28px rgba(255,122,43,.1),inset 0 0 14px rgba(255,122,43,.07)}to{box-shadow:0 0 16px rgba(255,122,43,.42),0 0 44px rgba(255,122,43,.2),inset 0 0 22px rgba(255,122,43,.13)}}
+
+/* ================= 1. WHY: two sales charts ================= */
+.tob-why-l{margin:0}
+.tob-vs{position:relative;display:grid;margin-top:28px}
+@media (min-width:860px){.tob-vs{grid-template-columns:1fr auto 1fr;gap:18px;align-items:stretch;margin-top:36px}}
+.tob-vs-badge{position:relative;z-index:2;justify-self:center;align-self:center;margin:-14px 0;width:46px;height:46px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:900;font-size:.95rem;letter-spacing:-.02em}
+@media (min-width:860px){.tob-vs-badge{margin:0}}
+.tob-vs-p{border-radius:20px;padding:20px 16px 16px;display:flex;flex-direction:column;min-width:0}
+@media (min-width:860px){.tob-vs-p{padding:24px 22px 20px}}
+.tob-vs-p .ph{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 6px}
+.tob-vs-p .ph b{font-family:var(--display);font-weight:800;font-size:1.14rem;letter-spacing:-.02em;line-height:1.2}
+.tob-vs-a{background:#fff;border:1px solid var(--line-l)}
+.tob-vs-a .tob-tag{background:var(--card);color:var(--muted)}
+.tob-vs-b{background:var(--ink);color:#fff;box-shadow:12px 12px 0 var(--tan)}
+.tob-vs-b .tob-tag{background:rgba(224,123,53,.18);color:var(--d-accent)}
+.tob-vs-cap{display:flex;align-items:flex-start;gap:10px;margin:0;padding-top:12px;border-top:1px solid var(--line-l);font-weight:600;font-size:.98rem;line-height:1.4}
+.tob-vs-cap i{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;margin-top:-1px}
+.tob-vs-cap i svg{width:13px;height:13px}
+.tob-vs-a .tob-vs-cap{color:var(--body)}
+.tob-vs-a .tob-vs-cap i{background:var(--red);color:#fff}
+.tob-vs-b .tob-vs-cap{border-top-color:var(--line-d);color:#fff}
+.tob-vs-b .tob-vs-cap i{background:var(--orange);color:var(--ink)}
+
+.tob-chart{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 12px}
+.tob-bars{display:flex;align-items:flex-end;gap:4px;height:150px;padding:0 2px;border-bottom:2px solid #D9CCBC}
+@media (min-width:860px){.tob-bars{gap:6px;height:170px}}
+.tob-vs-b .tob-bars{border-bottom-color:#4A4540}
+.tob-bars i{position:relative;flex:1;min-width:0;height:var(--h);border-radius:4px 4px 0 0;background:#E6DBCD;
+  transition:height .6s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--n,0) * 45ms)}
+.tob-bars i.pk{background:#B9A58D}
+.tob-bars i::before{content:attr(data-l);position:absolute;left:50%;bottom:calc(100% + var(--p,0px) + 5px);transform:translateX(-50%);white-space:nowrap;font-family:var(--sans);font-style:normal;font-size:11px;font-weight:700;line-height:1;color:var(--ink);
+  transition:opacity .3s ease;transition-delay:calc(var(--n,0) * 45ms + 450ms)}
+.tob-bars i.q::before{color:var(--red);font-weight:600}
+.tob-bars i::after{content:"";position:absolute;left:0;right:0;bottom:100%;height:var(--p,0px);border-radius:4px 4px 0 0;background:var(--teal-hi);
+  transition:height .5s ease;transition-delay:calc(var(--n,0) * 45ms + 450ms)}
+.tob-vs-b .tob-bars i{background:var(--orange)}
+.tob-vs-b .tob-bars i.c{border-radius:0}
+.tob-vs-b .tob-bars i.c::before{color:#5CC9B4}
+.tob-chart.pre .tob-bars i,.tob-chart.pre .tob-bars i::after{height:0}
+.tob-chart.pre .tob-bars i::before{opacity:0}
+.tob-axis{display:flex;justify-content:space-between;margin:6px 0 0;font-size:.74rem;font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.tob-vs-b .tob-axis{color:var(--d-3)}
+.tob-legend{display:flex;flex-wrap:wrap;gap:6px 16px;margin:0 0 12px;font-size:.84rem;font-weight:600;color:var(--d-2)}
+.tob-legend span{display:inline-flex;align-items:center;gap:7px}
+.tob-legend i{width:10px;height:10px;border-radius:2px;background:var(--orange)}
+.tob-legend u{width:10px;height:10px;border-radius:2px;background:var(--teal-hi)}
+
+/* ================= 2. WHAT YOU GET ================= */
+.tob-get-top{display:grid;gap:36px;align-items:center}
+@media (min-width:960px){.tob-get-top{grid-template-columns:1fr 1.05fr;gap:56px}}
+.tob-get-top h2{max-width:13ch}
+.tob-facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.tob-facts span{display:inline-flex;align-items:center;gap:7px;background:#fff;border:1px solid #E2D2BF;border-radius:999px;padding:7px 14px;font-size:.92rem;font-weight:600;color:var(--body)}
+.tob-facts svg{width:15px;height:15px;color:var(--rust-hl)}
+
+/* Product bundle mockup (glimpse only) */
+.tob-bundle{position:relative;width:100%;max-width:580px;margin:0 auto;container-type:inline-size;padding:0 0 16% 0}
+.tob-laptop{position:relative;width:86%;margin-left:auto}
+.tob-lid{background:#141312;border-radius:14px 14px 4px 4px;padding:2.4% 2.4% 2.8%;box-shadow:0 40px 70px -34px rgba(26,25,24,.55),inset 0 0 0 1px #34312D}
+.tob-screen{aspect-ratio:16/10;border-radius:5px;overflow:hidden;display:grid;grid-template-columns:30% 1fr;background:#fff;font-size:max(6.5px,1.75cqw);font-family:var(--sans)}
+.tob-base{height:0;padding-bottom:2.6%;margin:0 -5%;background:linear-gradient(#3F3B36,#22201D);border-radius:0 0 14px 14px;position:relative}
+.tob-base::after{content:"";position:absolute;left:50%;top:0;width:17%;height:38%;transform:translateX(-50%);background:#161514;border-radius:0 0 6px 6px}
+.tob-side{background:#F7F2EB;border-right:1px solid #EDE4D8;padding:1.1em .9em;display:flex;flex-direction:column;gap:.55em}
+.tob-side .lg{font-family:var(--display);font-weight:800;font-size:1.1em;letter-spacing:-.02em;line-height:1.1;margin-bottom:.4em}
+.tob-side .m{display:flex;align-items:center;gap:.5em;font-weight:600;color:var(--muted);line-height:1.15}
+.tob-side .m i{flex:none;width:1.6em;height:1.6em;border-radius:50%;background:#E8DED1;display:grid;place-items:center;font-style:normal;font-size:.8em;font-weight:800}
+.tob-side .m.done i{background:var(--ink);color:#fff}
+.tob-side .m.now{color:var(--ink)}
+.tob-side .m.now i{background:var(--orange);color:var(--ink)}
+.tob-read{padding:1.4em 1.6em;display:flex;flex-direction:column;gap:.6em}
+.tob-read .k{color:var(--rust);font-weight:700;font-size:.85em;letter-spacing:.06em;text-transform:uppercase}
+.tob-read .t{font-family:var(--display);font-weight:800;font-size:2.1em;letter-spacing:-.04em;line-height:1}
+.tob-sk{display:block;height:.62em;border-radius:99px;background:#EDE6DC}
+.tob-sk.w9{width:92%}.tob-sk.w8{width:80%}.tob-sk.w7{width:68%}.tob-sk.w6{width:56%}.tob-sk.w5{width:46%}.tob-sk.w4{width:36%}
+.tob-read .tool{margin-top:auto;display:flex;align-items:center;gap:.6em;border:1.5px dashed var(--orange);border-radius:.6em;padding:.6em .8em;font-weight:700;color:var(--rust)}
+.tob-read .tool i{flex:none;width:1.8em;height:1.8em;border-radius:.4em;background:var(--orange-soft);display:grid;place-items:center;font-style:normal}
+.tob-docm{position:absolute;z-index:2;left:0;bottom:4%;width:50%;background:#fff;border-radius:8px;padding:5% 5.5% 5%;transform:rotate(-3deg);box-shadow:0 26px 50px -18px rgba(26,25,24,.45),0 0 0 1px var(--line-l);font-size:max(7px,1.75cqw);line-height:1.3}
+.tob-docm .dh{display:flex;align-items:center;gap:.6em;margin-bottom:.8em}
+.tob-docm .dh i{flex:none;width:1.5em;height:1.9em;border-radius:.15em .45em .15em .15em;background:#3B6FE0}
+.tob-docm .dh b{font-family:var(--display);font-weight:800;font-size:1.25em;letter-spacing:-.03em;line-height:1.05}
+.tob-docm .row{display:grid;grid-template-columns:auto 1fr;gap:.6em;align-items:center;padding:.38em 0;border-top:1px solid #F0EAE1}
+.tob-docm .row u{text-decoration:none;font-weight:800;font-size:.85em;color:var(--muted);width:1.6em}
+.tob-docm .row.s u{color:var(--rust)}
+.tob-docm .row.p u{color:var(--teal)}
+.tob-docm .row.s .tob-sk{background:#F8DDC6}
+.tob-docm .row.p .tob-sk{background:#CFE8E2}
+.tob-phonem{position:absolute;z-index:3;right:2%;bottom:3%;width:27%;background:#141312;border-radius:16px;padding:2.4% 2%;box-shadow:0 26px 44px -18px rgba(26,25,24,.6),inset 0 0 0 1px #34312D;transform:rotate(4deg)}
+.tob-ps{background:#fff;border-radius:11px;aspect-ratio:9/17;padding:14% 11%;color:var(--text);font-size:max(6.5px,1.6cqw);display:flex;flex-direction:column;gap:.6em;overflow:hidden}
+.tob-ps .pt{font-family:var(--display);font-weight:800;font-size:1.3em;letter-spacing:-.03em;line-height:1.05}
+.tob-ps .in{background:#FFF3C4;border:1px solid #F0D978;border-radius:.4em;padding:.35em .5em;font-weight:700}
+.tob-ps .in small{display:block;font-size:.8em;font-weight:600;color:var(--muted)}
+.tob-ps .bars{display:flex;align-items:flex-end;gap:.5em;height:4.2em;margin-top:.2em}
+.tob-ps .bars b{flex:1;border-radius:.3em .3em 0 0;background:var(--orange)}
+.tob-ps .bars b.p{background:var(--teal-hi)}
+.tob-ps .out{margin-top:auto;background:var(--ink);color:#fff;border-radius:.6em;padding:.55em .6em;font-weight:700;line-height:1.2}
+.tob-ps .out b{display:block;color:var(--orange);font-family:var(--display);font-size:1.25em}
+.tob-lbl{position:absolute;z-index:6;display:inline-flex;align-items:center;gap:6px;background:var(--ink);color:#fff;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:-.005em;line-height:1;padding:6px 10px;border-radius:999px;box-shadow:0 0 0 3px var(--cream);white-space:nowrap}
+.tob-lbl i{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+.tob-lbl.l1{top:-12px;right:8%}
+.tob-lbl.l2{left:10%;bottom:-13px}
+.tob-lbl.l3{right:-4px;bottom:-13px}
+@media (min-width:700px){.tob-lbl{font-size:13px;padding:7px 12px}}
+
+/* 5 decision cards. The number sits in the top-left corner. */
+.tob-trackh{margin-top:52px}
+.tob-trackh-head{margin-bottom:16px}
+.tob-trackh-head .tob-sub-h{margin:0}
+.tob-steps5{display:grid;gap:10px}
+.tob-st{position:relative;min-width:0;background:#fff;border:1px solid #E2D2BF;border-radius:16px;padding:34px 16px 16px;overflow:hidden}
+.tob-st .num{position:absolute;top:0;left:0;padding:5px 12px 6px;border-radius:0 0 12px 0;background:var(--ink);color:#fff;font-family:var(--display);font-weight:900;font-size:.78rem;letter-spacing:.02em;line-height:1}
+.tob-st .hd{display:flex;align-items:center;gap:12px;margin:0 0 10px;min-width:0}
+.tob-st .ico{flex:none;width:42px;height:42px;border-radius:12px;background:var(--card);display:grid;place-items:center;color:var(--ink)}
+.tob-st .ico svg{width:22px;height:22px}
+.tob-st .k{font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 2px}
+.tob-st .q{font-family:var(--display);font-weight:800;font-size:1.24rem;letter-spacing:-.03em;line-height:1.12;margin:0;color:var(--ink)}
+.tob-st .d{font-size:.98rem;line-height:1.45;color:var(--body);margin:0 0 12px}
+.tob-st .tl{display:inline-flex;align-items:center;gap:8px;border:1.5px dashed #E2D2BF;border-radius:999px;padding:6px 12px;font-size:.86rem;font-weight:700;color:var(--ink);margin:0;white-space:nowrap}
+.tob-st .tl svg{width:16px;height:16px;color:var(--rust-hl)}
+.tob-st.s{border-color:#EFC9A7}
+.tob-st.s .num{background:var(--orange);color:var(--ink)}
+.tob-st.s .ico{background:var(--orange-soft);color:var(--rust)}
+.tob-st.s .k{color:var(--rust)}
+.tob-st.p{border-color:#B9DCD3}
+.tob-st.p .num{background:var(--teal)}
+.tob-st.p .ico{background:var(--teal-soft);color:var(--teal)}
+.tob-st.p .k{color:var(--teal)}
+@media (min-width:860px){
+  .tob-st{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) auto;gap:22px;align-items:center;padding:30px 22px 18px}
+  .tob-st .hd,.tob-st .d{margin:0}
+}
+
+/* Inside tiles with micro visuals */
+.tob-inside{margin-top:52px}
+.tob-tiles{display:grid;gap:14px;margin-top:18px}
+@media (min-width:720px){.tob-tiles{grid-template-columns:1fr 1fr}}
+@media (min-width:1000px){.tob-tiles{grid-template-columns:repeat(3,1fr);gap:16px}}
+.tob-tile{background:#fff;border:1px solid #E2D2BF;border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.tob-tile .vis{position:relative;height:180px;background:var(--card);border-bottom:1px solid #EDE4D8;display:grid;place-items:center;overflow:hidden;padding:16px}
+.tob-tile .txt{padding:16px 18px 18px}
+.tob-tile .tg{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);margin:0 0 6px}
+.tob-tile h3{font-size:1.28rem;letter-spacing:-.03em;line-height:1.15;margin:0 0 6px}
+.tob-tile p{font-size:.98rem;line-height:1.45;color:var(--body);margin:0}
+.tob-tile p.fine{font-size:.82rem;color:var(--muted);margin-top:8px}
+.tob-tile.dk{background:var(--ink);border-color:var(--ink);color:#fff}
+.tob-tile.dk .vis{background:radial-gradient(70% 80% at 50% 100%,rgba(224,123,53,.28),transparent 70%),#24221F;border-bottom-color:#33302C}
+.tob-tile.dk p{color:var(--d-2)}
+.tob-tile.dk .tg{color:var(--d-accent)}
+/* v1 the guide: a fan of 5 module cards */
+.mv-fan{position:relative;width:100%;height:148px}
+.mv-fan .c{position:absolute;left:50%;bottom:0;width:76px;height:112px;margin-left:-38px;border-radius:10px;padding:9px 9px 8px;display:flex;flex-direction:column;
+  box-shadow:0 14px 26px -12px rgba(0,0,0,.7),0 0 0 1px rgba(0,0,0,.08);transform-origin:50% 130%;
+  transform:translateX(calc(var(--i) * 50px)) rotate(calc(var(--i) * 6deg));
+  transition:transform .7s cubic-bezier(.2,.8,.2,1);transition-delay:calc((var(--i) + 2) * 70ms)}
+.mv-fan.pre .c{transform:none}
+.tob-tile:hover .mv-fan .c{transform:translateX(calc(var(--i) * 54px)) rotate(calc(var(--i) * 7deg));transition-delay:0s}
+.mv-fan .c small{font-size:8px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7;line-height:1}
+.mv-fan .c b{font-family:var(--display);font-weight:900;font-size:40px;line-height:1;letter-spacing:-.05em;margin-top:4px}
+.mv-fan .c em{margin-top:auto;font-style:normal;font-family:var(--display);font-size:11px;font-weight:800;line-height:1.1;letter-spacing:-.01em}
+.mv-fan .c s{display:inline-flex;align-items:center;gap:3px;margin-top:5px;text-decoration:none;font-size:8px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;opacity:.75}
+.mv-fan .c1{z-index:1;background:#FFFCF7;color:var(--ink)}
+.mv-fan .c2{z-index:2;background:var(--orange);color:var(--ink)}
+.mv-fan .c3{z-index:3;background:var(--teal);color:#fff}
+.mv-fan .c4{z-index:4;background:#F1E4D5;color:var(--ink)}
+.mv-fan .c5{z-index:5;background:#fff;color:var(--ink);border-top:5px solid var(--orange)}
+/* v2 doc */
+.mv-doc{width:min(220px,90%);background:#fff;border-radius:8px;box-shadow:0 12px 26px -16px rgba(26,25,24,.5),0 0 0 1px var(--line-l);padding:11px 14px;display:flex;flex-direction:column;gap:6px}
+.mv-doc .h{display:flex;align-items:center;gap:7px;font-family:var(--display);font-weight:800;font-size:12px;letter-spacing:-.02em}
+.mv-doc .h i{width:12px;height:15px;border-radius:2px 4px 2px 2px;background:#3B6FE0;flex:none}
+.mv-doc .r{display:grid;grid-template-columns:14px 1fr;gap:7px;align-items:center}
+.mv-doc .r u{text-decoration:none;font-size:9px;font-weight:800;color:var(--muted)}
+.mv-doc .r .tob-sk{height:6px}
+.mv-doc .r.s u{color:var(--rust)}.mv-doc .r.s .tob-sk{background:#F8DDC6}
+.mv-doc .r.p u{color:var(--teal)}.mv-doc .r.p .tob-sk{background:#CFE8E2}
+.mv-doc .mv{margin-top:2px;background:var(--ink);color:#fff;border-radius:5px;padding:5px 7px;font-size:9px;font-weight:700;display:flex;align-items:center;gap:6px}
+.mv-doc .mv i{width:6px;height:6px;border-radius:50%;background:var(--orange)}
+/* v3 calculator sheet */
+.mv-calc{width:min(230px,92%);background:#fff;border-radius:8px;box-shadow:0 12px 26px -16px rgba(26,25,24,.5),0 0 0 1px var(--line-l);overflow:hidden;font-size:10.5px}
+.mv-calc .bar{display:flex;align-items:center;gap:6px;padding:6px 9px;background:#F3EFE8;font-weight:700;font-size:10px}
+.mv-calc .bar i{width:11px;height:13px;border-radius:2px;background:#1E8E3E}
+.mv-calc .rw{display:grid;grid-template-columns:1fr 78px;border-top:1px solid #EEE7DD}
+.mv-calc .rw span{padding:5px 8px;color:var(--body);font-weight:600}
+.mv-calc .rw b{padding:5px 8px;text-align:right;font-family:var(--display);font-weight:800;border-left:1px solid #EEE7DD}
+.mv-calc .rw.in b{background:#FFF3C4}
+.mv-calc .rw.o1 b{color:var(--rust)}
+.mv-calc .rw.o2 b{color:var(--teal)}
+.mv-calc .rw.tt{background:var(--ink);color:#fff}
+.mv-calc .rw.tt span{color:#fff}
+.mv-calc .rw.tt b{color:var(--orange);border-left-color:#3A3733}
+/* v4 action tool (yes/no test) */
+.mv-test{width:min(220px,90%);background:#fff;border-radius:10px;box-shadow:0 12px 26px -16px rgba(26,25,24,.5),0 0 0 1px var(--line-l);padding:12px;display:flex;flex-direction:column;gap:7px}
+.mv-test .h{font-family:var(--display);font-weight:800;font-size:11.5px;letter-spacing:-.02em;margin-bottom:2px}
+.mv-test .q{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}
+.mv-test .q .tob-sk{height:6px}
+.mv-test .q b{display:flex;gap:4px}
+.mv-test .q b i{width:22px;height:16px;border-radius:4px;border:1px solid #E2D7C8;font-style:normal;font-size:8px;font-weight:800;display:grid;place-items:center;color:var(--muted)}
+.mv-test .q b i.y{background:var(--teal);border-color:var(--teal);color:#fff}
+.mv-test .res{margin-top:2px;font-size:9.5px;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:5px}
+/* v5 AI prompt */
+.mv-ai{width:min(232px,92%);display:flex;flex-direction:column;gap:8px}
+.mv-ai .b1{align-self:flex-end;max-width:84%;background:var(--ink);color:#fff;border-radius:12px 12px 3px 12px;padding:8px 10px;font-size:10.5px;line-height:1.35;font-weight:600}
+.mv-ai .b2{align-self:flex-start;max-width:86%;background:#fff;border-radius:12px 12px 12px 3px;padding:9px 10px;box-shadow:0 0 0 1px var(--line-l);display:flex;flex-direction:column;gap:5px}
+.mv-ai .b2 .tob-sk{height:5px}
+.mv-ai .sp{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:800;color:var(--rust)}
+.mv-ai .sp svg{width:12px;height:12px}
+/* v6 WhatsApp */
+.mv-wa{width:min(230px,92%);background:#0B141A;border-radius:12px;overflow:hidden;box-shadow:0 12px 26px -14px rgba(0,0,0,.7)}
+.mv-wa .hd{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#1F2C33;color:#E9EDEF;font-size:10.5px;font-weight:700}
+.mv-wa .hd i{width:20px;height:20px;border-radius:50%;background:var(--orange);display:grid;place-items:center;font-style:normal;font-size:9px;color:var(--ink);font-weight:900}
+.mv-wa .hd small{display:block;font-size:8.5px;font-weight:500;color:#8696A0}
+.mv-wa .bd{padding:9px 9px 10px;display:flex;flex-direction:column;gap:6px}
+.mv-wa .m{width:72%;max-width:82%;border-radius:8px;padding:6px 8px;font-size:9.5px;line-height:1.35;color:#E9EDEF;background:#202C33}
+.mv-wa .m u{text-decoration:none;display:block;font-size:8px;font-weight:700;margin-bottom:1px;color:#53BDEB}
+.mv-wa .m.me{align-self:flex-end;background:#005C4B}
+.mv-wa .m.o u{color:#F0A36B}
+
+/* What this is not */
+.tob-not{margin-top:14px;border-radius:20px;border:2px dashed #C7B49E;padding:20px 18px}
+.tob-not h3{font-size:1.32rem;letter-spacing:-.03em;margin:0 0 8px}
+.tob-not ul{display:grid;gap:0}
+@media (min-width:760px){.tob-not ul{grid-template-columns:1fr 1fr;gap:4px 24px}}
+@media (min-width:1080px){.tob-not ul{grid-template-columns:repeat(3,1fr)}}
+.tob-not li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start;padding:7px 0;font-size:1rem;line-height:1.45;color:var(--body)}
+.tob-not li i{width:24px;height:24px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;margin-top:-1px}
+.tob-not li i svg{width:12px;height:12px}
+.tob-not li b{color:var(--ink)}
+
+/* ================= 3. CLIENT WINS ================= */
+.tob-wins{display:grid;gap:16px;margin-top:28px}
+@media (min-width:900px){.tob-wins{grid-template-columns:repeat(3,1fr);gap:18px}}
+.tob-win{background:#fff;border:1px solid var(--line-l);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.tob-win-photo{position:relative;aspect-ratio:16/11;background:var(--card)}
+.tob-win-photo img{width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block}
+.tob-win-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(transparent,rgba(26,25,24,.82))}
+.tob-win-photo .nm{position:absolute;z-index:1;left:18px;right:18px;bottom:14px;color:#fff}
+.tob-win-photo .nm b{display:block;font-family:var(--display);font-weight:800;font-size:1.35rem;letter-spacing:-.03em;line-height:1.1}
+.tob-win-photo .nm span{display:block;font-size:.88rem;color:#E8E1D8}
+.tob-win-big{padding:18px 20px 4px}
+.tob-win-big b{display:block;font-family:var(--display);font-weight:900;font-size:clamp(1.7rem,6.4vw,2.05rem);letter-spacing:-.045em;line-height:1;color:var(--ink)}
+.tob-win-big b i{font-style:normal;color:var(--rust-hl);font-weight:800;margin:0 .1em}
+.tob-win-big span{display:block;font-size:.86rem;color:var(--muted);margin-top:6px}
+.tob-steps3{position:relative;display:grid;gap:10px;padding:14px 20px 20px;flex:1}
+.tob-steps3::before{content:"";position:absolute;left:31px;top:22px;bottom:28px;width:2px;background:linear-gradient(var(--line-l),var(--orange) 50%,var(--teal))}
+.tob-steps3 li{position:relative;padding-left:32px}
+.tob-steps3 li::before{content:"";position:absolute;left:5px;top:5px;width:14px;height:14px;border-radius:50%;background:#fff;border:2px solid #C9BCA8}
+.tob-steps3 li.b2::before{border-color:var(--orange);background:var(--orange)}
+.tob-steps3 li.b3::before{border-color:var(--teal);background:var(--teal)}
+.tob-steps3 .k{display:block;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.tob-steps3 .b2 .k{color:var(--rust)}
+.tob-steps3 .b3 .k{color:var(--teal)}
+.tob-steps3 .v{display:block;font-size:.98rem;line-height:1.4;color:var(--body)}
+.tob-steps3 .b3 .v{font-weight:700;color:var(--ink)}
+
+/* ================= 4. STORY ================= */
+.tob-story{display:grid;gap:32px}
+@media (min-width:940px){.tob-story{grid-template-columns:1fr 1fr;gap:70px;align-items:start}}
+.tob-story .tob-lines .soft{color:var(--d-3)}
+.tob-story .tob-lines .turn{margin-top:22px;padding-top:18px;border-top:1px solid var(--line-d);color:#fff}
+.tob-timeline{position:relative}
+.tob-timeline::before{content:"";position:absolute;z-index:0;left:7px;top:10px;bottom:10px;width:1.5px;background:var(--line-d)}
+/* Moving glow pulse that travels down the timeline line */
+.tob-timeline::after{content:"";position:absolute;z-index:0;left:5px;top:10px;width:5.5px;height:72px;border-radius:99px;
+  background:linear-gradient(rgba(255,138,61,0),#FF8A3D 55%,#FFD2B0 80%,rgba(255,138,61,0));
+  filter:drop-shadow(0 0 6px rgba(255,122,43,.95)) drop-shadow(0 0 14px rgba(255,122,43,.55));
+  animation:tob-tl 3.6s cubic-bezier(.45,0,.55,1) infinite}
+@keyframes tob-tl{0%{top:0;opacity:0}12%{opacity:1}85%{opacity:1}100%{top:calc(100% - 72px);opacity:0}}
+.tob-timeline li{position:relative;z-index:1;padding:0 0 16px 34px}
+.tob-timeline li::before{content:"";position:absolute;left:0;top:8px;width:15px;height:15px;border-radius:50%;background:var(--ink);border:1.5px solid var(--d-3)}
+.tob-timeline .when{display:block;font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--d-3)}
+.tob-timeline .what{display:block;font-size:1.04rem;color:var(--d-2)}
+.tob-timeline .win{padding-bottom:0}
+.tob-timeline .win::before{background:var(--orange);border-color:var(--orange);box-shadow:0 0 0 5px rgba(224,123,53,.2);animation:tob-winpulse 2.4s ease-out infinite}
+@keyframes tob-winpulse{0%{box-shadow:0 0 0 5px rgba(224,123,53,.22),0 0 0 5px rgba(255,122,43,.55)}100%{box-shadow:0 0 0 5px rgba(224,123,53,.22),0 0 0 18px rgba(255,122,43,0)}}
+.tob-timeline .win .what{font-weight:700;color:#fff}
+.tob-timeline .win .res{display:block;margin-top:8px;font-family:var(--display);font-weight:800;font-size:1.9rem;letter-spacing:-.04em;line-height:1.05;color:var(--orange)}
+.tob-block{margin-top:56px;padding-top:44px;border-top:1px solid var(--line-d)}
+@media (min-width:860px){.tob-block{margin-top:72px;padding-top:56px}}
+
+/* Math: left vs right */
+.tob-lr{display:grid;gap:14px;margin-top:24px}
+@media (min-width:900px){.tob-lr{grid-template-columns:1fr 1fr;gap:18px;align-items:stretch}}
+.tob-side-c{border-radius:22px;padding:20px 18px;display:flex;flex-direction:column}
+.tob-side-c .sh{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 0 14px}
+.tob-side-c .sh b{font-family:var(--display);font-weight:800;font-size:1.25rem;letter-spacing:-.03em}
+.tob-old{background:var(--ink-2);border:1px solid var(--line-d)}
+.tob-old .sh .tob-tag{background:#33302C;color:var(--d-3)}
+.tob-new{background:#2A2017;border:1px solid var(--orange);box-shadow:0 0 0 1px var(--orange),0 20px 44px -24px rgba(224,123,53,.7)}
+.tob-new .sh .tob-tag{background:var(--orange);color:var(--ink)}
+.tob-way{display:grid;gap:10px}
+.tob-way .wl{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.tob-way .wl span{font-size:.95rem;font-weight:600;color:var(--d-2)}
+.tob-way .wl small{font-size:.84rem;color:var(--d-3);white-space:nowrap}
+.tob-way .big{font-family:var(--display);font-weight:900;font-size:clamp(1.9rem,7vw,2.4rem);letter-spacing:-.05em;line-height:1;color:#fff}
+.tob-way .nt{font-size:.92rem;color:var(--d-3);line-height:1.4}
+.tob-or{display:flex;align-items:center;gap:12px;margin:16px 0;font-size:.74rem;font-weight:800;letter-spacing:.16em;color:var(--d-3)}
+.tob-or::before,.tob-or::after{content:"";flex:1;height:1px;background:var(--line-d)}
+.tob-dots{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.tob-dots i{width:7px;height:7px;border-radius:50%;background:var(--orange)}
+.tob-dots.mute i{background:#8A6447}
+.tob-dots u{width:26px;height:26px;border-radius:7px;background:var(--teal-hi);margin:0 3px 0 0}
+.tob-dots u.x{background:transparent;border:2px dashed #6B655E}
+.tob-new .tob-way .big{color:var(--orange)}
+.tob-new .tob-way .nt{color:var(--d-2)}
+.tob-sum{margin-top:auto;padding-top:16px;border-top:1px solid #4A3626;display:grid;gap:5px;font-size:.94rem;color:var(--d-2)}
+.tob-sum .r{display:flex;justify-content:space-between;gap:10px}
+.tob-sum .r b{color:#fff;font-variant-numeric:tabular-nums}
+.tob-sum .tot{padding-top:6px;font-weight:700;color:#fff}
+.tob-sum .tot b{font-family:var(--display);font-weight:900;font-size:1.6rem;letter-spacing:-.04em;color:var(--orange)}
+.tob-new .tob-way{gap:12px}
+.tob-key{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:14px;font-size:.88rem;color:var(--d-3)}
+.tob-key span{display:inline-flex;align-items:center;gap:8px}
+.tob-key i{width:8px;height:8px;border-radius:50%;background:var(--orange)}
+.tob-key u{width:14px;height:14px;border-radius:4px;background:var(--teal-hi)}
+.tob-key u.x{background:transparent;border:2px dashed #6B655E}
+
+/* ================= 5. AFTER (before / after) ================= */
+.tob-ba2{display:grid;gap:14px;margin-top:28px}
+@media (min-width:900px){.tob-ba2{grid-template-columns:1fr auto 1fr;gap:18px;align-items:center}}
+.tob-ba2 .arrow{justify-self:center;width:46px;height:46px;border-radius:50%;background:var(--ink);color:var(--orange);display:grid;place-items:center;transform:rotate(90deg)}
+.tob-ba2 .arrow svg{width:22px;height:22px}
+@media (min-width:900px){.tob-ba2 .arrow{transform:none;width:52px;height:52px}}
+.tob-notes{background:#FFFBEA;border-radius:18px;padding:18px 18px 16px;box-shadow:0 18px 40px -26px rgba(26,25,24,.5),0 0 0 1px #EEE3B8}
+.tob-notes .nh{display:flex;justify-content:space-between;align-items:baseline;margin:0 0 10px}
+.tob-notes .nh b{font-family:var(--display);font-weight:800;font-size:1.05rem;letter-spacing:-.02em}
+.tob-notes .nh span{font-size:.78rem;color:var(--muted)}
+.tob-notes li{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid #F1E7C4;font-size:1rem;color:var(--body)}
+.tob-notes li s{color:#9C8F7C;text-decoration-thickness:1.5px}
+.tob-notes li i{flex:none;width:18px;height:18px;border-radius:5px;border:1.5px solid #CDBF95}
+.tob-notes li em{margin-left:auto;font-style:normal;font-size:.78rem;font-weight:700;color:var(--red)}
+.tob-glance{background:var(--ink);color:#fff;border-radius:18px;padding:20px 18px 18px;box-shadow:12px 12px 0 var(--tan)}
+.tob-glance .gh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 14px}
+.tob-glance .gh b{font-family:var(--display);font-weight:800;font-size:1.1rem;letter-spacing:-.02em}
+.tob-glance .gh span{font-size:.78rem;color:var(--d-3)}
+.tob-flow{display:grid;gap:6px}
+.tob-flow li{display:grid;grid-template-columns:34px 1fr;gap:10px;align-items:center;background:var(--ink-2);border:1px solid var(--line-d);border-radius:12px;padding:9px 12px}
+.tob-flow li i{width:34px;height:34px;border-radius:10px;background:#33302C;display:grid;place-items:center;color:var(--d-2)}
+.tob-flow li i svg{width:17px;height:17px}
+.tob-flow li b{display:block;font-family:var(--display);font-weight:800;font-size:1rem;letter-spacing:-.015em;line-height:1.2}
+.tob-flow li .tob-sk{height:6px;margin-top:6px;background:#3A3733}
+.tob-flow li.s{border-color:var(--orange)}.tob-flow li.s i{background:rgba(224,123,53,.2);color:var(--orange)}
+.tob-flow li.p{border-color:var(--teal-hi)}.tob-flow li.p i{background:rgba(47,163,143,.2);color:#5CC9B4}
+.tob-first{margin-top:12px;display:flex;align-items:center;gap:10px;background:var(--orange);color:var(--ink);border-radius:12px;padding:10px 12px;font-weight:800;font-family:var(--display);letter-spacing:-.01em}
+.tob-first svg{width:18px;height:18px;flex:none}
+.tob-outs{display:grid;gap:8px;margin-top:24px}
+@media (min-width:760px){.tob-outs{grid-template-columns:1fr 1fr;gap:10px}}
+@media (min-width:1080px){.tob-outs{grid-template-columns:repeat(4,1fr)}}
+.tob-outs li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start;background:#fff;border:1px solid #E2D2BF;border-radius:14px;padding:12px 14px;font-size:1rem;line-height:1.4;color:var(--body)}
+.tob-outs li i{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center}
+.tob-outs li i svg{width:14px;height:14px}
+.tob-outs li b{color:var(--ink)}
+
+/* ================= 6. FIT ================= */
+.tob-road{position:relative;display:grid;gap:16px;margin-top:28px}
+@media (min-width:900px){.tob-road{grid-template-columns:1fr 1.18fr 1fr;gap:16px;align-items:end;padding-top:20px}}
+.tob-road::before{content:"";position:absolute;left:21px;top:22px;bottom:40px;width:3px;border-radius:3px;background:linear-gradient(#D9CCBC,var(--orange) 50%,#D9CCBC)}
+@media (min-width:900px){.tob-road::before{left:4%;right:4%;top:auto;bottom:-22px;width:auto;height:3px;background:linear-gradient(90deg,#D9CCBC,var(--orange) 50%,#D9CCBC)}
+  .tob-road::after{content:"";position:absolute;right:4%;bottom:-27px;width:12px;height:12px;border-top:3px solid #D9CCBC;border-right:3px solid #D9CCBC;transform:rotate(45deg)}}
+.tob-stage{position:relative;border-radius:20px;padding:18px 18px 16px 64px;background:var(--card);border:1px solid var(--line-l);color:var(--muted)}
+@media (min-width:900px){.tob-stage{padding:22px 20px 20px}}
+.tob-stage .sn{position:absolute;left:8px;top:18px;width:30px;height:30px;border-radius:50%;background:#E6DCCF;color:var(--muted);display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:.9rem;box-shadow:0 0 0 4px var(--paper)}
+@media (min-width:900px){.tob-stage .sn{position:static;margin-bottom:12px;box-shadow:none}}
+.tob-stage .lab{display:block;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px}
+.tob-stage b{display:block;font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:-.02em;line-height:1.2;color:var(--body)}
+.tob-stage p{margin:6px 0 10px;font-size:.95rem;line-height:1.45}
+.tob-stage .vd{display:flex;align-items:flex-start;gap:8px;font-weight:700;font-size:.94rem;line-height:1.35;color:var(--body)}
+.tob-stage .vd i{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;margin-top:1px}
+.tob-stage .vd i svg{width:11px;height:11px}
+.tob-stage.x .vd i{background:var(--red);color:#fff}
+@media (min-width:900px){.tob-stage.s1{margin-bottom:0}.tob-stage.s3{margin-bottom:58px}}
+.tob-stage.on{background:linear-gradient(160deg,#2B211A,var(--ink) 60%);border:0;color:var(--d-2);padding-top:22px;padding-bottom:20px;box-shadow:0 0 0 2px var(--orange),0 30px 60px -26px rgba(224,123,53,.75)}
+@media (min-width:900px){.tob-stage.on{margin-bottom:28px;padding:30px 24px 26px}}
+.tob-stage.on .sn{background:var(--orange);color:var(--ink);box-shadow:0 0 0 4px var(--paper),0 0 0 10px rgba(224,123,53,.25)}
+@media (min-width:900px){.tob-stage.on .sn{box-shadow:0 0 0 8px rgba(224,123,53,.18)}}
+.tob-stage.on .lab{color:var(--d-accent)}
+.tob-stage.on b{color:#fff;font-size:clamp(1.35rem,5vw,1.6rem);letter-spacing:-.035em;line-height:1.1}
+.tob-stage.on p{color:var(--d-2)}
+.tob-stage.on .vd{color:#fff;font-family:var(--display);font-weight:800;font-size:1.08rem}
+.tob-stage.on .vd i{background:var(--orange);color:var(--ink)}
+.tob-stage.on .pin{display:flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--d-accent);margin:0 0 8px}
+.tob-stage.on .pin svg{width:15px;height:15px}
+.tob-stage.on .glow{position:absolute;inset:0;border-radius:20px;pointer-events:none;background:radial-gradient(60% 50% at 80% 0%,rgba(255,122,43,.25),transparent 70%)}
+.tob-fit-h{font-family:var(--display);font-weight:800;font-size:clamp(1.4rem,4.8vw,1.8rem);letter-spacing:-.035em;line-height:1.15;margin:48px 0 0}
+@media (min-width:900px){.tob-fit-h{margin-top:72px}}
+.tob-fit{display:grid;gap:14px;margin-top:16px}
+@media (min-width:880px){.tob-fit{grid-template-columns:1fr 1fr;gap:20px}}
+.tob-fit-card{border-radius:20px;padding:22px 20px}
+.tob-fit-card h3{font-size:1.45rem;letter-spacing:-.04em;line-height:1.1;margin-bottom:8px}
+.tob-fit-card li{display:flex;gap:12px;align-items:flex-start;font-size:1.02rem;line-height:1.45;padding:8px 0}
+.tob-fit-card li + li{border-top:1px solid rgba(0,0,0,.07)}
+.tob-fit-card li i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;margin-top:2px}
+.tob-fit-card li i svg{width:12px;height:12px}
+.tob-fit-card.yes{background:#fff;color:var(--text);box-shadow:0 0 0 2px var(--teal)}
+.tob-fit-card.yes h3{color:var(--teal)}
+.tob-fit-card.yes li i{background:var(--teal);color:#fff}
+.tob-fit-card.no{background:var(--ink);color:var(--d-2)}
+.tob-fit-card.no h3{color:#fff}
+.tob-fit-card.no li + li{border-top-color:var(--line-d)}
+.tob-fit-card.no li i{background:var(--red);color:#fff}
+
+/* ================= 7. NEXT 7 DAYS ================= */
+.tob-days{display:grid;gap:10px;margin-top:28px}
+@media (min-width:860px){.tob-days{grid-template-columns:repeat(4,1fr);gap:14px}}
+.tob-day{position:relative;background:#fff;border:1px solid #E2D2BF;border-radius:18px;padding:16px 18px}
+.tob-day .w{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--rust);margin:0 0 8px}
+.tob-day .w i{width:22px;height:22px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-style:normal;font-family:var(--display);font-size:.72rem;letter-spacing:0}
+.tob-day b{display:block;font-family:var(--display);font-weight:800;font-size:1.12rem;letter-spacing:-.02em;line-height:1.2;margin-bottom:4px}
+.tob-day p{margin:0;font-size:.96rem;line-height:1.45;color:var(--body)}
+.tob-day.last{background:var(--ink);border-color:var(--ink);color:#fff}
+.tob-day.last .w{color:var(--d-accent)}
+.tob-day.last .w i{background:var(--orange);color:var(--ink)}
+.tob-day.last p{color:var(--d-2)}
+.tob-callnote{margin-top:12px;display:flex;gap:14px;align-items:flex-start;background:#FCF3EA;border:1px solid #F0DCC8;border-radius:16px;padding:14px 16px}
+.tob-callnote .tob-av{width:46px;height:46px}
+.tob-callnote p{margin:0;font-size:1rem;line-height:1.5;color:var(--body)}
+.tob-callnote p b{color:var(--ink)}
+
+/* ================= 8. FAQ ================= */
+.tob-faq{margin-top:22px;border-top:2px solid var(--ink)}
+.tob-faq details{border-bottom:1px solid var(--line-l)}
+.tob-faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:18px 0;font-family:var(--display);font-weight:800;font-size:1.14rem;letter-spacing:-.02em;line-height:1.3}
+.tob-faq summary::-webkit-details-marker{display:none}
+.tob-faq summary:focus-visible{outline:3px solid var(--text);outline-offset:3px}
+.tob-faq .pm{flex:none;width:30px;height:30px;border-radius:50%;background:var(--orange);position:relative}
+.tob-faq .pm::before,.tob-faq .pm::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:2px;background:var(--ink);transform:translate(-50%,-50%)}
+.tob-faq .pm::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .2s ease}
+.tob-faq details[open] .pm::after{transform:translate(-50%,-50%) rotate(0deg)}
+.tob-faq .a{padding:0 0 18px;color:var(--body);max-width:40em;font-size:1.04rem}
+.tob-faq .a p:last-child{margin:0}
+
+/* ================= 9. YOUR CHOICE (final push) ================= */
+.tob-final{padding:60px 0 68px}
+@media (min-width:860px){.tob-final{padding:84px 0 96px}}
+.tob-final h2{max-width:20ch}
+.tob-pick{display:grid;gap:28px;margin-top:28px}
+@media (min-width:900px){.tob-pick{grid-template-columns:1fr 1.1fr;gap:24px;align-items:stretch}}
+.tob-pk{display:flex;flex-direction:column}
+.tob-pk-h{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-family:var(--display);font-weight:800;font-size:1.18rem;letter-spacing:-.02em;line-height:1.2;color:#fff}
+.tob-pk-h i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center}
+.tob-pk-h i svg{width:13px;height:13px}
+.tob-pk-h.x i{background:var(--red);color:#fff}
+.tob-pk-h.y i{background:var(--orange);color:var(--ink)}
+
+/* The restart loop */
+.tob-loopc{flex:1;background:var(--ink-2);border:1px solid var(--line-d);border-radius:22px;padding:18px 16px 18px;display:flex;flex-direction:column}
+.tob-loop{position:relative;width:100%;max-width:300px;aspect-ratio:1/1;margin:0 auto 10px}
+.tob-loop .ring{position:absolute;inset:18%;border-radius:50%;border:2px dashed #5A534B;animation:tob-spin 14s linear infinite}
+.tob-loop .ring::before{content:"";position:absolute;left:50%;top:-6px;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:#FF8A3D;box-shadow:0 0 10px 3px rgba(255,122,43,.75)}
+@keyframes tob-spin{to{transform:rotate(360deg)}}
+.tob-loop .ctr{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.tob-loop .ctr span{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--display);font-weight:800;font-size:1.02rem;letter-spacing:-.02em;line-height:1.1;color:#fff}
+.tob-loop .ctr svg{width:26px;height:26px;color:var(--d-3)}
+.tob-loop .nd{position:absolute;z-index:1;width:104px;transform:translate(-50%,-50%);background:var(--ink);border:1.5px solid var(--line-d);border-radius:10px;padding:7px 8px;text-align:center;font-size:.84rem;font-weight:700;line-height:1.2;color:var(--d-2)}
+.tob-loop .n1{left:50%;top:18%}
+.tob-loop .n2{left:82%;top:50%}
+.tob-loop .n3{left:50%;top:82%;border-color:rgba(224,123,53,.6);color:#F2B184}
+.tob-loop .n4{left:18%;top:50%;border-color:rgba(217,58,43,.65);color:#F08A7E}
+.tob-loopc .cap{margin:auto 0 0;padding-top:14px;border-top:1px solid var(--line-d);font-size:1.02rem;line-height:1.45;color:var(--d-2)}
+.tob-loopc .cap b{color:#fff}
+
+/* The order receipt */
+.tob-rcpt{position:relative;flex:1;background:#FFFDF8;color:var(--text);border-top:6px solid var(--orange);border-radius:18px 18px 0 0;padding:18px 18px 20px;margin-bottom:12px}
+.tob-rcpt::after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:12px;
+  background:linear-gradient(135deg,#FFFDF8 6px,transparent 0) 0 0/12px 12px repeat-x,linear-gradient(-135deg,#FFFDF8 6px,transparent 0) 0 0/12px 12px repeat-x}
+.tob-rcpt .rh{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:4px 10px;padding-bottom:12px;border-bottom:2px dashed #E2D2BF;margin:0 0 4px}
+.tob-rcpt .rh b{font-family:var(--display);font-weight:800;font-size:1.22rem;letter-spacing:-.02em;color:var(--ink)}
+.tob-rcpt .rh span{font-size:.82rem;font-weight:600;color:var(--muted)}
+.tob-rcpt .items li{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:start;padding:10px 0;border-bottom:1px solid #F0E8DD;font-size:.98rem;line-height:1.35;color:var(--body)}
+.tob-rcpt .items li i{width:20px;height:20px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;margin-top:1px}
+.tob-rcpt .items li i svg{width:11px;height:11px}
+.tob-rcpt .items li b{display:block;color:var(--ink);font-weight:700}
+.tob-rcpt .items li small{display:block;font-size:.85rem;color:var(--muted);margin-top:1px}
+.tob-rcpt .items li em{font-style:normal;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-top:3px}
+.tob-rcpt .tot{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;padding:16px 0 18px}
+.tob-rcpt .tot span{font-weight:700;color:var(--ink);font-size:1.02rem;line-height:1.3}
+.tob-rcpt .tot span small{display:block;font-weight:500;color:var(--muted);font-size:.86rem}
+.tob-rcpt .tot b{font-family:var(--display);font-weight:900;font-size:2.6rem;letter-spacing:-.05em;line-height:1;color:var(--ink)}
+.tob-rcpt .tob-btn{width:100%;white-space:normal}
+.tob-rcpt .tob-btn:focus-visible{outline-color:var(--ink)}
+.tob-rcpt .tob-micro{margin-top:14px;justify-content:center;color:var(--muted)}
+
+@media (prefers-reduced-motion:reduce){
+  .tob-track{animation:none}
+  .tob-ticker{overflow-x:auto;animation:none}
+  .tob-btn,.tob-faq .pm::after{transition:none}
+  .tob-timeline::after{animation:none;display:none}
+  .tob-timeline .win::before{animation:none}
+  .tob-loop .ring{animation:none}
+  .tob-bars i,.tob-bars i::before,.tob-bars i::after,.mv-fan .c{transition:none}
+}
+
+/* ================= HERO v26 ================= */
+.tob .tobh{
+  position:relative;isolation:isolate;overflow:hidden;container-type:inline-size;text-align:center;padding:0 0 18px;
+  background:
+    radial-gradient(55% 28% at 50% 0%,rgba(247,214,187,.55),transparent 75%),
+    radial-gradient(45% 30% at 12% 40%,rgba(255,236,214,.6),transparent 70%),
+    radial-gradient(45% 30% at 88% 46%,rgba(255,232,206,.55),transparent 70%),
+    var(--paper);
+}
+.tob .tobh::before{
+  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background-image:linear-gradient(rgba(26,25,24,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(26,25,24,.045) 1px,transparent 1px);
+  background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(75% 55% at 50% 30%,#000 25%,transparent 80%);
+  mask-image:radial-gradient(75% 55% at 50% 30%,#000 25%,transparent 80%);
+}
+.tobh-wrap{width:100%;max-width:1000px;margin:0 auto;padding:0 14px;container-type:inline-size}
+
+/* Pre-headline: soft tab hanging from the top edge */
+.tob .tobh-ph{
+  display:block;width:fit-content;max-width:calc(100% - 16px);margin:0 auto;padding:5px 14px 7px;
+  font-family:var(--sans);font-size:clamp(12px,3.7cqw,14.5px);font-weight:400;line-height:1.34;text-wrap:balance;color:#4A453F;
+  background:rgba(255,250,243,.9);border:1px solid #EAD9C6;border-top:0;border-radius:0 0 14px 14px;
+  box-shadow:0 10px 24px -16px rgba(140,80,30,.38);
+}
+.tob .tobh-ph b{font-weight:700;color:var(--rust)}
+
+/* Headline: Soft Box look (lab #1). Grey filler words, black "what I tried",
+   bold black "Still Stuck?", orange money, marker stroke on "Two-Offer Model".
+   Headline preserves the existing row groups and wraps long rows safely at larger type sizes.
+   All original colors, weights, marker styles, spacing rules, and other hero content are retained. */
+.tob h1.tobh-hl{
+  margin:12px -8px 0;max-width:none;font-family:var(--display);font-weight:500;
+  font-size:7cqw;line-height:1.12;letter-spacing:-.035em;color:#5A544D;white-space:normal;
+}
+.tobh-hl span{white-space:normal}
+.tobh-hl .hl-row{display:block;white-space:normal}
+.tobh-hl br.d{display:none}
+.tobh-hl .tried{font-weight:650;color:var(--ink)}
+.tobh-hl .pain{font-weight:800;color:var(--ink)}
+.tobh-hl .real-business{text-decoration:underline;text-decoration-thickness:.065em;text-underline-offset:.115em;text-decoration-skip-ink:auto}
+.tobh-hl .hot{font-weight:800;color:var(--rust-hl)}
+/* "Two-Offer Model": bold black text on a peach marker stroke with uneven edges (lab #5).
+   The stroke draws across once on load. Delete the "animation:" part to keep it still. */
+.tobh-hl .mdl{position:relative;display:inline-block;isolation:isolate;padding:0 .14em;font-weight:800;color:var(--ink)}
+.tobh-hl .mdl::before{content:"";position:absolute;z-index:-1;left:-.06em;right:-.1em;top:.36em;bottom:.04em;background:rgba(250,128,40,.42);border-radius:.32em .12em .4em .14em / .5em .2em .55em .25em;transform:rotate(-1.2deg) skewX(-6deg);transform-origin:left center;animation:tobh-draw .8s cubic-bezier(.25,.8,.25,1) .25s both}
+@keyframes tobh-draw{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* Sub-headline: one block */
+.tob .tobh-sh{max-width:35em;margin:12px auto 0;font-size:clamp(11.5px,3.8cqw,17px);line-height:1.4;color:var(--body);text-wrap:pretty}
+.tobh-sh b{font-weight:700;color:var(--ink)}
+.tobh-sh .s{font-weight:800;color:var(--rust-hl)}
+.tobh-sh .p{font-weight:800;color:#0A6B5D}
+.tobh-sh .m{font-weight:700;color:var(--ink);padding:0 .12em;background:linear-gradient(transparent 56%,var(--orange-soft) 56%);-webkit-box-decoration-break:clone;box-decoration-break:clone}
+
+/* Watch how it works (small) */
+.tob .tobh-w{
+  display:flex;align-items:center;justify-content:center;gap:8px;margin:12px auto 9px;max-width:290px;
+  font-family:var(--sans);font-weight:600;font-size:10px;line-height:1;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+}
+.tobh-w::before,.tobh-w::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,#D9C9B6)}
+.tobh-w::after{background:linear-gradient(90deg,#D9C9B6,transparent)}
+.tobh-w .ar{flex:none;width:17px;height:17px;border-radius:50%;border:1px solid rgba(228,86,10,.45);display:grid;place-items:center;color:var(--rust-hl);animation:tobh-nudge 2.2s ease-in-out infinite}
+.tobh-w .ar svg{width:9px;height:9px;display:block}
+.tobh-w .ar path{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@keyframes tobh-nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(2px)}}
+
+/* Video in viewfinder corners */
+.tobh-vf{position:relative;max-width:800px;margin:0 auto;padding:7px}
+.tobh-vf > i{position:absolute;width:16px;height:16px;border:0 solid #D58A55}
+.tobh-vf > i:nth-child(1){left:0;top:0;border-left-width:2px;border-top-width:2px;border-top-left-radius:5px}
+.tobh-vf > i:nth-child(2){right:0;top:0;border-right-width:2px;border-top-width:2px;border-top-right-radius:5px}
+.tobh-vf > i:nth-child(3){left:0;bottom:0;border-left-width:2px;border-bottom-width:2px;border-bottom-left-radius:5px}
+.tobh-vf > i:nth-child(4){right:0;bottom:0;border-right-width:2px;border-bottom-width:2px;border-bottom-right-radius:5px}
+.tobh-vf::before{content:"";position:absolute;left:8%;right:8%;bottom:-8%;height:40%;z-index:-1;background:radial-gradient(closest-side,rgba(224,123,53,.32),transparent);filter:blur(10px)}
+.tobh-v{position:relative;width:100%;border-radius:10px;overflow:hidden;background:var(--ink);
+  box-shadow:0 0 0 1px rgba(26,25,24,.1),0 2px 4px rgba(26,25,24,.06),0 26px 50px -26px rgba(70,35,10,.55)}
+.tobh-v wistia-player{display:block;width:100%}
+
+/* Byline */
+.tobh-by{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px auto 0;font-size:12.5px;line-height:1.25;text-align:left;color:var(--muted)}
+.tobh-by .tob-av{width:30px;height:30px}
+
+@media (min-width:700px){
+  .tob .tobh{padding-bottom:32px}
+  .tob .tobh-ph{font-size:17px;padding:8px 28px 10px;border-radius:0 0 18px 18px}
+  .tob h1.tobh-hl{margin:22px auto 0;line-height:1.26;font-size:min(5.7cqw,64px)}
+  .tobh-hl br.p{display:none}
+  .tobh-hl br.d{display:inline}
+  .tob .tobh-sh{font-size:17px;line-height:1.45;margin-top:16px;max-width:40em;text-wrap:balance}
+  .tob .tobh-w{margin:18px auto 12px;font-size:11px;max-width:360px}
+  .tobh-w .ar{width:19px;height:19px}
+  .tobh-w .ar svg{width:10px;height:10px}
+  .tobh-vf{padding:9px}
+  .tobh-vf > i{width:22px;height:22px}
+  .tobh-by{font-size:13.5px}
+  .tobh-by .tob-av{width:34px;height:34px}
+}
+
+/* v33: mobile headline only (phones and small tablets, under 700px).
+   Looser line spacing, slightly smaller type, looser letter spacing, and a
+   small gap between the 5 headline rows so each row sits on one line with
+   room on both sides. Desktop (700px and up) is not touched.
+   To tune: raise line-height if it still feels tight; raise font-size
+   (for example to 6.2cqw) if the headline feels too small. */
+@media (max-width:699px){
+  .tob h1.tobh-hl{margin:18px 0 0;font-size:5.8cqw;line-height:1.4;letter-spacing:-.018em}
+  .tobh-hl .hl-row + .hl-row{margin-top:.16em}
+}
+
+@media (prefers-reduced-motion:reduce){.tobh-w .ar{animation:none}.tobh-hl .mdl::before{animation:none}}
+
+
+</style>
+
+<div class="tob" id="tob-top">
+
+<!-- =========================== HERO (v26) =========================== -->
+<header class="tobh">
+  <p class="tobh-ph">For <b>skilled professionals</b> building an online business around their knowledge</p>
+  <div class="tobh-wrap">
+
+    <h1 class="tobh-hl"><span class="hl-row"><span class="f">Tried Selling an</span> <span class="tried">Ebook,</span> <span class="tried">Course,</span></span><span class="hl-row"><span class="f">or</span> <span class="tried">Coaching Program</span> <span class="f">but</span> <span class="f">Still</span></span><span class="hl-row"><span class="f">Don’t Have a</span> <span class="pain real-business">Real Online Business</span><span class="f">?</span></span><span class="hl-row"><span class="f">Get My</span> <span class="mdl">Two-Offer Model</span></span><span class="hl-row"><span class="f">to Build Toward</span> <span class="hot">₹2–4 Lakh/Month.</span></span></h1>
+
+    <p class="tobh-sh"><b>The Two-Offer Business</b> is a <b>5-step guide</b> to planning <span class="s">one small offer</span> that brings in buyers and <span class="p">one premium offer</span> they can buy next, so you can <span class="m">stop guessing what to sell</span> and jumping between products and funnels.</p>
+
+    <p class="tobh-w"><span>Watch how it works</span><span class="ar" aria-hidden="true"><svg viewBox="0 0 12 12" focusable="false"><path d="M6 1.5v8.5M2.5 6.8L6 10.2l3.5-3.4"/></svg></span></p>
+
+    <!-- Hero video: Wistia (media-id 2kbf6rvdnc) -->
+    <div class="tobh-vf">
+      <i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i><i aria-hidden="true"></i>
+      <div class="tobh-v">
+        <script src="https://fast.wistia.com/player.js" async></script><script src="https://fast.wistia.com/embed/2kbf6rvdnc.js" async type="module"></script><style>wistia-player[media-id='2kbf6rvdnc']:not(:defined) { background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/2kbf6rvdnc/swatch'); display: block; filter: blur(5px); padding-top:56.25%; }</style> <wistia-player media-id="2kbf6rvdnc" seo="false" aspect="1.7777777777777777"></wistia-player>
+      </div>
+    </div>
+
+    <div class="tobh-by">
+      <span class="tob-av"><img src="https://assets.cdn.filesafe.space/7rxmDgEXJMsPErojoFfx/media/6ab79cd13ae3da26fb757f47.webp" alt="Prathamesh Jiwatode" width="42" height="42" loading="eager"></span>
+      <span><strong>Prathamesh Jiwatode</strong><br><a class="tob-handle" href="https://instagram.com/p_dot_j" target="_blank" rel="noopener">@p_dot_j</a></span>
+    </div>
+  </div>
+</header>
+
+<!-- =========================== TICKER =========================== -->
+<div class="tob-ticker" aria-label="What you get: Already tried selling? Choose your small offer. Design your premium offer. Connect both offers. Know your numbers. Stop switching offers. 5 short written modules. Plan template and calculator. Used with 1:1 clients. No shortcuts, real work. From my own business. ₹499 one-time.">
+  <div class="tob-track" aria-hidden="true">
+    <ul><li><span>Already <b>tried selling?</b></span></li><li><span>Choose your <b>small offer</b></span></li><li><span>Design your <b>premium offer</b></span></li><li><span><b>Connect</b> both offers</span></li><li><span>Know your <b>numbers</b></span></li><li><span>Stop <b>switching</b> offers</span></li><li><span>5 short written <b>modules</b></span></li><li><span>Plan template + <b>calculator</b></span></li><li><span>Used with <b>1:1 clients</b></span></li><li><span><b>No shortcuts</b>, real work</span></li><li><span>From my <b>own business</b></span></li><li><span><b>₹499</b> one-time</span></li></ul>
+    <ul><li><span>Already <b>tried selling?</b></span></li><li><span>Choose your <b>small offer</b></span></li><li><span>Design your <b>premium offer</b></span></li><li><span><b>Connect</b> both offers</span></li><li><span>Know your <b>numbers</b></span></li><li><span>Stop <b>switching</b> offers</span></li><li><span>5 short written <b>modules</b></span></li><li><span>Plan template + <b>calculator</b></span></li><li><span>Used with <b>1:1 clients</b></span></li><li><span><b>No shortcuts</b>, real work</span></li><li><span>From my <b>own business</b></span></li><li><span><b>₹499</b> one-time</span></li></ul>
+    <ul><li><span>Already <b>tried selling?</b></span></li><li><span>Choose your <b>small offer</b></span></li><li><span>Design your <b>premium offer</b></span></li><li><span><b>Connect</b> both offers</span></li><li><span>Know your <b>numbers</b></span></li><li><span>Stop <b>switching</b> offers</span></li><li><span>5 short written <b>modules</b></span></li><li><span>Plan template + <b>calculator</b></span></li><li><span>Used with <b>1:1 clients</b></span></li><li><span><b>No shortcuts</b>, real work</span></li><li><span>From my <b>own business</b></span></li><li><span><b>₹499</b> one-time</span></li></ul>
+    <ul><li><span>Already <b>tried selling?</b></span></li><li><span>Choose your <b>small offer</b></span></li><li><span>Design your <b>premium offer</b></span></li><li><span><b>Connect</b> both offers</span></li><li><span>Know your <b>numbers</b></span></li><li><span>Stop <b>switching</b> offers</span></li><li><span>5 short written <b>modules</b></span></li><li><span>Plan template + <b>calculator</b></span></li><li><span>Used with <b>1:1 clients</b></span></li><li><span><b>No shortcuts</b>, real work</span></li><li><span>From my <b>own business</b></span></li><li><span><b>₹499</b> one-time</span></li></ul>
+  </div>
+</div>
+
+<!-- =========================== 1. WHY SALES STALL =========================== -->
+<section class="tob-sec tob-paper">
+  <div class="tob-wrap">
+    <p class="tob-eyebrow">Why sales stall</p>
+    <h2>You launched. A few people bought. <span class="tob-hl">Then it went quiet.</span></h2>
+    <p class="tob-lede tob-why-l">Each offer had 2 jobs: <strong>find buyers</strong> and <strong>pay your bills.</strong> One offer can't do both.</p>
+
+    <div class="tob-vs" role="img" aria-label="Two simple sales charts. Left, one offer at a time: a spike of sales at each launch of an ebook, a course and a webinar, then weeks of almost no sales after each one. Right, two connected offers: small ₹499 sales come in every week, and every few weeks one of those buyers becomes a premium client.">
+      <div class="tob-vs-p tob-vs-a" aria-hidden="true">
+        <p class="ph"><b>One offer at a time</b><span class="tob-tag">Today</span></p>
+        <div class="tob-chart" data-anim>
+          <div class="tob-bars">
+            <i style="--h:6px"></i>
+            <i class="pk" style="--h:118px" data-l="Ebook"></i>
+            <i style="--h:36px"></i>
+            <i style="--h:12px"></i>
+            <i class="q" style="--h:4px" data-l="quiet"></i>
+            <i style="--h:4px"></i>
+            <i class="pk" style="--h:96px" data-l="Course"></i>
+            <i style="--h:28px"></i>
+            <i style="--h:8px"></i>
+            <i class="q" style="--h:4px" data-l="quiet"></i>
+            <i style="--h:4px"></i>
+            <i class="pk" style="--h:82px" data-l="Webinar"></i>
+            <i style="--h:20px"></i>
+            <i style="--h:6px"></i>
+            <i class="q" style="--h:4px" data-l="quiet"></i>
+            <i style="--h:4px"></i>
+          </div>
+          <p class="tob-axis"><span>Sales</span><span>Weeks →</span></p>
+        </div>
+        <p class="tob-vs-cap"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg></i>A spike, then quiet. Then you start from zero.</p>
+      </div>
+      <span class="tob-vs-badge" aria-hidden="true">VS</span>
+      <div class="tob-vs-p tob-vs-b" aria-hidden="true">
+        <p class="ph"><b>2 offers, connected</b><span class="tob-tag">The fix</span></p>
+        <div class="tob-chart" data-anim>
+          <div class="tob-bars">
+            <i style="--h:30px"></i>
+            <i style="--h:32px"></i>
+            <i style="--h:34px"></i>
+            <i class="c" style="--h:35px;--p:50px" data-l="client"></i>
+            <i style="--h:36px"></i>
+            <i style="--h:38px"></i>
+            <i style="--h:40px"></i>
+            <i style="--h:41px"></i>
+            <i class="c" style="--h:42px;--p:56px" data-l="client"></i>
+            <i style="--h:44px"></i>
+            <i style="--h:45px"></i>
+            <i style="--h:46px"></i>
+            <i class="c" style="--h:48px;--p:62px" data-l="client"></i>
+            <i style="--h:49px"></i>
+            <i style="--h:50px"></i>
+            <i style="--h:52px"></i>
+          </div>
+          <p class="tob-axis"><span>Sales</span><span>Weeks →</span></p>
+        </div>
+        <p class="tob-legend"><span><i></i>₹499 sales</span><span><u></u>Premium client</span></p>
+        <p class="tob-vs-cap"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i>The small offer finds buyers. The premium offer pays the bills.</p>
+      </div>
+    </div>
+    <p class="tob-small">Simple pictures to show the idea. Not real data.</p>
+
+    <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">Give my offers one job each <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- =========================== 2. WHAT YOU GET =========================== -->
+<section class="tob-sec tob-cream">
+  <div class="tob-wrap">
+    <div class="tob-get-top">
+      <div>
+        <p class="tob-eyebrow">What you get</p>
+        <h2>Here's what you get for <span class="tob-hl">₹499.</span></h2>
+        <p class="tob-lede">A short written guide with <strong>5 decisions.</strong> Each one comes with a tool. You read, you decide, and you write it into your plan.</p>
+        <div class="tob-facts">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>5 written modules</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>20–30 minutes each</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Your own pace</span>
+        </div>
+      </div>
+
+      <div class="tob-bundle" role="img" aria-label="A preview of what you get: the written guide open on a laptop, your Two-Offer Business Plan in Google Docs, and the Backwards Calculator on a phone.">
+        <div class="tob-laptop" aria-hidden="true">
+          <span class="tob-lbl l1"><i></i>The guide</span>
+          <div class="tob-lid">
+            <div class="tob-screen">
+              <div class="tob-side">
+                <span class="lg">The Two-Offer Business</span>
+                <span class="m done"><i>1</i>Who</span>
+                <span class="m now"><i>2</i>Small offer</span>
+                <span class="m"><i>3</i>Premium offer</span>
+                <span class="m"><i>4</i>Connection</span>
+                <span class="m"><i>5</i>Numbers</span>
+              </div>
+              <div class="tob-read">
+                <span class="k">Module 2 of 5</span>
+                <span class="t">Your small offer</span>
+                <span class="tob-sk w9"></span><span class="tob-sk w8"></span><span class="tob-sk w9"></span><span class="tob-sk w6"></span>
+                <span class="tool"><i>✓</i>Small Offer Sheet</span>
+              </div>
+            </div>
+          </div>
+          <div class="tob-base"></div>
+        </div>
+        <div class="tob-docm" aria-hidden="true">
+          <div class="dh"><i></i><b>My Two-Offer Business Plan</b></div>
+          <div class="row"><u>1</u><span class="tob-sk w8"></span></div>
+          <div class="row s"><u>2</u><span class="tob-sk w9"></span></div>
+          <div class="row p"><u>3</u><span class="tob-sk w7"></span></div>
+          <div class="row"><u>4</u><span class="tob-sk w8"></span></div>
+          <div class="row"><u>5</u><span class="tob-sk w5"></span></div>
+          <span class="tob-lbl l2"><i></i>Your plan</span>
+        </div>
+        <div class="tob-phonem" aria-hidden="true">
+          <div class="tob-ps">
+            <span class="pt">Backwards Calculator</span>
+            <span class="in"><small>My goal</small>₹ ______</span>
+            <div class="bars"><b style="height:46%"></b><b class="p" style="height:100%"></b></div>
+            <span class="out">You need<b>? sales + ? clients</b></span>
+          </div>
+          <span class="tob-lbl l3"><i></i>The calculator</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 decisions. Number in the top-left corner of each card. -->
+    <div class="tob-trackh">
+      <div class="tob-trackh-head">
+        <p class="tob-sub-h">5 modules. 5 decisions.</p>
+      </div>
+      <ol class="tob-steps5">
+        <li class="tob-st">
+          <span class="num">01</span>
+          <div class="hd"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><div><p class="k">Who</p><p class="q">Who you help</p></div></div>
+          <p class="d">Pick one person and the one problem you fix for them.</p>
+          <p class="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Guest Check</p>
+        </li>
+        <li class="tob-st s">
+          <span class="num">02</span>
+          <div class="hd"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4L13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></span><div><p class="k">Small offer</p><p class="q">What you sell first</p></div></div>
+          <p class="d">Pick the small offer that brings buyers in. Set its price.</p>
+          <p class="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Small Offer Sheet</p>
+        </li>
+        <li class="tob-st p">
+          <span class="num">03</span>
+          <div class="hd"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21L8 9l4-6 4 6z"/></svg></span><div><p class="k">Premium offer</p><p class="q">What they buy next</p></div></div>
+          <p class="d">Plan the bigger offer your best buyers move into.</p>
+          <p class="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Premium Offer Sheet</p>
+        </li>
+        <li class="tob-st">
+          <span class="num">04</span>
+          <div class="hd"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></span><div><p class="k">Connection</p><p class="q">How buyers move up</p></div></div>
+          <p class="d">Write the one line that invites buyers to the next step.</p>
+          <p class="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Next-Step Line</p>
+        </li>
+        <li class="tob-st">
+          <span class="num">05</span>
+          <div class="hd"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M8 7h8"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01" stroke-width="2.8"/></svg></span><div><p class="k">Numbers</p><p class="q">Does it add up?</p></div></div>
+          <p class="d">See how many sales and clients you need each month.</p>
+          <p class="tl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Backwards Calculator</p>
+        </li>
+      </ol>
+    </div>
+
+    <!-- Inside: 6 tiles with micro visuals -->
+    <div class="tob-inside">
+      <p class="tob-sub-h">Everything inside.</p>
+      <div class="tob-tiles">
+        <div class="tob-tile dk">
+          <div class="vis" aria-hidden="true">
+            <div class="mv-fan" data-anim>
+              <span class="c c1" style="--i:-2"><small>Module</small><b>1</b><em>Who</em></span>
+              <span class="c c2" style="--i:-1"><small>Module</small><b>2</b><em>Small</em></span>
+              <span class="c c3" style="--i:0"><small>Module</small><b>3</b><em>Premium</em></span>
+              <span class="c c4" style="--i:1"><small>Module</small><b>4</b><em>Connect</em></span>
+              <span class="c c5" style="--i:2"><small>Module</small><b>5</b><em>Numbers</em></span>
+            </div>
+          </div>
+          <div class="txt"><span class="tg">The core</span><h3>The 5-module guide</h3><p>Short and written. Each module ends with one decision. Go at your own pace.</p></div>
+        </div>
+        <div class="tob-tile">
+          <div class="vis" aria-hidden="true">
+            <div class="mv-doc">
+              <span class="h"><i></i>My Two-Offer Business Plan</span>
+              <span class="r"><u>1</u><span class="tob-sk w8"></span></span>
+              <span class="r s"><u>2</u><span class="tob-sk w9"></span></span>
+              <span class="r p"><u>3</u><span class="tob-sk w7"></span></span>
+              <span class="r"><u>4</u><span class="tob-sk w8"></span></span>
+              <span class="r"><u>5</u><span class="tob-sk w6"></span></span>
+              <span class="mv"><i></i>My first move this week</span>
+            </div>
+          </div>
+          <div class="txt"><span class="tg">Google Doc</span><h3>My Two-Offer Business Plan</h3><p>Your answers, in your own Google Doc. It ends with one move you can do this week.</p></div>
+        </div>
+        <div class="tob-tile">
+          <div class="vis" aria-hidden="true">
+            <div class="mv-calc">
+              <div class="bar"><i></i>Backwards Calculator</div>
+              <div class="rw in"><span>My monthly goal</span><b>₹ ____</b></div>
+              <div class="rw in"><span>Premium price</span><b>₹ ____</b></div>
+              <div class="rw o2"><span>Clients I need</span><b>?</b></div>
+              <div class="rw o1"><span>Small offer sales</span><b>?</b></div>
+              <div class="rw tt"><span>Ads a day</span><b>₹ ?</b></div>
+            </div>
+          </div>
+          <div class="txt"><span class="tg">Google Sheet</span><h3>The Backwards Calculator</h3><p>Type your goal and your prices. It shows the sales, calls and clients you need.</p></div>
+        </div>
+        <div class="tob-tile">
+          <div class="vis" aria-hidden="true">
+            <div class="mv-test">
+              <span class="h">Small offer test</span>
+              <span class="q"><span class="tob-sk w9"></span><b><i class="y">YES</i><i>NO</i></b></span>
+              <span class="q"><span class="tob-sk w7"></span><b><i class="y">YES</i><i>NO</i></b></span>
+              <span class="q"><span class="tob-sk w8"></span><b><i class="y">YES</i><i>NO</i></b></span>
+              <span class="q"><span class="tob-sk w6"></span><b><i class="y">YES</i><i>NO</i></b></span>
+              <span class="res">✓ This idea passes</span>
+            </div>
+          </div>
+          <div class="txt"><span class="tg">1 in every module</span><h3>An action tool per step</h3><p>A quick test, a sheet or a template. So you decide, not just read.</p></div>
+        </div>
+        <div class="tob-tile">
+          <div class="vis" aria-hidden="true">
+            <div class="mv-ai">
+              <span class="b1">Here's my small offer idea. Is it clear to a stranger?</span>
+              <span class="b2"><span class="sp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.2 6.2L20.5 10l-6.3 1.8L12 18l-2.2-6.2L3.5 10l6.3-1.8z"/></svg>Second opinion</span><span class="tob-sk w9"></span><span class="tob-sk w8"></span><span class="tob-sk w5"></span></span>
+            </div>
+          </div>
+          <div class="txt"><span class="tg">Modules 1 to 4</span><h3>4 AI prompts</h3><p>Paste them into ChatGPT or Claude to check your wording. You still decide.</p></div>
+        </div>
+        <div class="tob-tile">
+          <div class="vis" aria-hidden="true">
+            <div class="mv-wa">
+              <div class="hd"><i>2</i><span>Two-Offer Business<small>Group</small></span></div>
+              <div class="bd">
+                <span class="m o"><u>Member</u><span class="tob-sk w9" style="background:#3A4A52;margin:3px 0"></span><span class="tob-sk w6" style="background:#3A4A52"></span></span>
+                <span class="m"><u>Member</u><span class="tob-sk w8" style="background:#3A4A52;margin:3px 0"></span><span class="tob-sk w5" style="background:#3A4A52"></span></span>
+                <span class="m me"><span class="tob-sk w9" style="background:#2E7D6C;margin:2px 0"></span><span class="tob-sk w4" style="background:#2E7D6C"></span></span>
+              </div>
+            </div>
+          </div>
+          <div class="txt"><span class="tg">Included</span><h3>WhatsApp group</h3><p>Updates, and people who are building their 2 offers too.</p><p class="fine">Group access only. No 1:1 feedback.</p></div>
+        </div>
+      </div>
+
+      <div class="tob-not">
+        <h3>What this is not</h3>
+        <ul>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>A webinar or a live workshop.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>A long video course.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>Coaching. There's <b>no 1:1 feedback.</b></span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>An AI tool that picks your offers for you.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>A choice between 2 offers. You plan <b>both</b>, and sell them in order.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>A done-for-you service. <b>You build it</b>, with a clear plan.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">Start planning my 2 offers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- =========================== 3. CLIENT WINS =========================== -->
+<!-- CONFIRM before publishing: each client is OK with their name, photo and result on this page. -->
+<section class="tob-sec tob-paper">
+  <div class="tob-wrap">
+    <p class="tob-eyebrow">Client wins</p>
+    <h2>Different skills. <span class="tob-hl">Same 2-offer model.</span></h2>
+    <p class="tob-lede">Where they started, what they built, and where they are now.</p>
+    <div class="tob-wins">
+      <article class="tob-win">
+        <div class="tob-win-photo"><img src="https://assets.cdn.filesafe.space/7rxmDgEXJMsPErojoFfx/media/6ab79df63ae3da26fb759113.webp" alt="Garima Lanjekar" loading="lazy"><div class="nm"><b>Garima Lanjekar</b><span>Marketing for business owners</span></div></div>
+        <div class="tob-win-big"><b>₹20K <i>→</i> ₹4L</b><span>A month</span></div>
+        <ol class="tob-steps3">
+          <li><span class="k">Before</span><span class="v">Freelance design work. Barely ₹20K a month.</span></li>
+          <li class="b2"><span class="k">Built</span><span class="v">Her own 2-offer business, helping owners with marketing.</span></li>
+          <li class="b3"><span class="k">Now</span><span class="v">₹4 lakh a month.</span></li>
+        </ol>
+      </article>
+      <article class="tob-win">
+        <div class="tob-win-photo"><img src="https://assets.cdn.filesafe.space/7rxmDgEXJMsPErojoFfx/media/6ab79df63dbd5f2bbbe0c8bd.webp" alt="Anshuja Basera" loading="lazy"><div class="nm"><b>Anshuja Basera</b><span>Hindi coach · Oct 2025 to May 2026</span></div></div>
+        <div class="tob-win-big"><b>₹500 <i>→</i> ₹30K</b><span>From one hourly lesson to an 8-week program</span></div>
+        <ol class="tob-steps3">
+          <li><span class="k">Before</span><span class="v">1 student. ₹500 an hour.</span></li>
+          <li class="b2"><span class="k">Built</span><span class="v">A ₹499 small offer + a ₹30,000 8-week program.</span></li>
+          <li class="b3"><span class="k">Now</span><span class="v">A 5,200-member WhatsApp community.</span></li>
+        </ol>
+      </article>
+      <article class="tob-win">
+        <div class="tob-win-photo"><img src="https://assets.cdn.filesafe.space/7rxmDgEXJMsPErojoFfx/media/6ab79df66407f2cbe4e9848b.webp" alt="Shaonli Sengupta" loading="lazy"><div class="nm"><b>Shaonli Sengupta</b><span>Home-food business · Mar to Jul 2026</span></div></div>
+        <div class="tob-win-big"><b>0 <i>→</i> 2 a day</b><span>Sales of her ₹499 product, from ads</span></div>
+        <ol class="tob-steps3">
+          <li><span class="k">Before</span><span class="v">2 years of research. Nothing launched.</span></li>
+          <li class="b2"><span class="k">Built</span><span class="v">A ₹499 kitchen product + a premium offer, ready.</span></li>
+          <li class="b3"><span class="k">Now</span><span class="v">Selling 2 a day from ads.</span></li>
+        </ol>
+      </article>
+    </div>
+    <p class="tob-small">Results are theirs. Yours will depend on your market, your offers and your work.</p>
+    <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">Build my own 2-offer business <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- =========================== 4. MY STORY + MATH =========================== -->
+<section class="tob-sec tob-ink">
+  <div class="tob-wrap">
+    <div class="tob-story">
+      <div>
+        <p class="tob-eyebrow">My story</p>
+        <h2>I was stuck in the same place. <span class="tob-hl">Then I connected my 2 offers.</span></h2>
+        <div class="tob-lines">
+          <p>For 13 months, I tried everything. An ebook. Calls. Workshops. A group course. Webinars. Ads.</p>
+          <p class="soft">Every launch, a few people bought. Then silence. And I started again from zero.</p>
+          <p class="turn">In July 2024, I stopped starting over. I connected <strong>one small offer</strong> to <strong>one premium offer.</strong></p>
+          <p class="hit">That month, I made <span class="tob-hl">₹2 lakh.</span> My best month since I started.</p>
+        </div>
+      </div>
+      <div>
+        <ol class="tob-timeline">
+          <li><span class="when">Jun to Jul 2023</span><span class="what">An ebook</span></li>
+          <li><span class="when">Aug 2023</span><span class="what">1:1 coaching calls</span></li>
+          <li><span class="when">Sep 2023</span><span class="what">Workshops</span></li>
+          <li><span class="when">Oct 2023</span><span class="what">A group course</span></li>
+          <li><span class="when">Jan 2024</span><span class="what">Paid webinars, then ₹3K to ₹5K coaching</span></li>
+          <li><span class="when">Feb to May 2024</span><span class="what">Ads to my DMs, then ₹5K to ₹10K offers</span></li>
+          <li class="win"><span class="when">Jul 2024</span><span class="what">1 small offer + 1 premium offer, connected</span><span class="res">₹2 lakh in the first month</span></li>
+        </ol>
+        <p class="tob-small">That's my number from 2024. It isn't a promise about yours. Your results depend on your market, your offers and your work.</p>
+      </div>
+    </div>
+
+    <div class="tob-block">
+      <p class="tob-eyebrow">The math</p>
+      <p class="tob-sub-h">₹1 lakh a month. <span class="tob-hl">Two ways to get there.</span></p>
+      <div class="tob-lr">
+        <div class="tob-side-c tob-old">
+          <p class="sh"><b>The old way</b><span class="tob-tag">One offer</span></p>
+          <div class="tob-way">
+            <p class="wl"><span>Only a small offer</span><small>₹499 each</small></p>
+            <div class="tob-dots mute" data-small="201" data-big="0" aria-label="201 sales"></div>
+            <p class="big">201 sales</p>
+            <p class="nt">About 7 every single day. One slow week hurts.</p>
+          </div>
+          <p class="tob-or">OR</p>
+          <div class="tob-way">
+            <p class="wl"><span>Only a premium offer</span><small>₹30,000 each</small></p>
+            <div class="tob-dots" data-small="0" data-big="4" data-cold="1" aria-label="4 clients from strangers"></div>
+            <p class="big">4 clients</p>
+            <p class="nt">From strangers who just met you. That's hard.</p>
+          </div>
+        </div>
+        <div class="tob-side-c tob-new">
+          <p class="sh"><b>The two-offer way</b><span class="tob-tag">Connected</span></p>
+          <div class="tob-way">
+            <p class="wl"><span>₹499 small offer + ₹30,000 premium offer</span></p>
+            <div class="tob-dots" data-small="90" data-big="2" aria-label="90 sales and 2 clients"></div>
+            <p class="big">90 sales + 2 clients</p>
+            <p class="nt">3 sales a day. And your 2 clients come from people who already bought from you.</p>
+          </div>
+          <div class="tob-sum">
+            <div class="r"><span>90 × ₹499</span><b>₹44,910</b></div>
+            <div class="r"><span>2 × ₹30,000</span><b>₹60,000</b></div>
+            <div class="r tot"><span>A month</span><b>₹1,04,910</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="tob-key" aria-hidden="true"><span><i></i>1 sale at ₹499</span><span><u></u>1 client from your buyers</span><span><u class="x"></u>1 client from strangers</span></div>
+      <p class="tob-small">Example math, before ad costs. It shows how the model works. It isn't a promise of what you'll earn.</p>
+      <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">Work out my own numbers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- =========================== 5. AFTER THE 5 DECISIONS =========================== -->
+<section class="tob-sec tob-cream">
+  <div class="tob-wrap">
+    <p class="tob-eyebrow">After the 5 decisions</p>
+    <h2>From "what do I sell next?" to <span class="tob-hl">a plan you can follow.</span></h2>
+    <p class="tob-lede">Right now, your ideas live in a notes app. After this, they live in one plan, in order.</p>
+    <div class="tob-ba2">
+      <div class="tob-notes" role="img" aria-label="Before: a notes app full of half ideas. Ebook version 2, maybe a group course, try webinars again, a new funnel, a new price. Each one crossed out.">
+        <p class="nh"><b>Before</b><span>Notes · 14 ideas</span></p>
+        <ul aria-hidden="true">
+          <li><i></i><s>Ebook, version 2?</s><em>again?</em></li>
+          <li><i></i><s>Maybe a group course this time</s></li>
+          <li><i></i><s>Try webinars again</s><em>again?</em></li>
+          <li><i></i><s>New funnel. New price.</s></li>
+          <li><i></i><s>Should I do coaching instead?</s></li>
+        </ul>
+      </div>
+      <span class="arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      <div class="tob-glance" role="img" aria-label="After: your business at a glance. The one person you help, your small offer, the line that invites buyers to the next step, your premium offer, and your monthly goal. Then your first move this week.">
+        <p class="gh"><b>My business at a glance</b><span>After</span></p>
+        <ol class="tob-flow" aria-hidden="true">
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></i><div><b>My one person</b><span class="tob-sk w7"></span></div></li>
+          <li class="s"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4L13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg></i><div><b>My small offer</b><span class="tob-sk w8"></span></div></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></i><div><b>The invite to the next step</b><span class="tob-sk w6"></span></div></li>
+          <li class="p"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20"/></svg></i><div><b>My premium offer</b><span class="tob-sk w8"></span></div></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg></i><div><b>My monthly goal</b><span class="tob-sk w5"></span></div></li>
+        </ol>
+        <p class="tob-first"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>My first move this week</p>
+      </div>
+    </div>
+    <ul class="tob-outs">
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You <b>stop switching</b> between offers and funnels.</span></li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You know <b>what to sell first</b>, and at what price.</span></li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You know <b>what your buyers buy next.</b></span></li>
+      <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You know <b>how many sales and clients</b> you need.</span></li>
+    </ul>
+    <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">Give me a plan I can follow <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- =========================== 6. IS THIS FOR YOU =========================== -->
+<section class="tob-sec tob-paper">
+  <div class="tob-wrap">
+    <p class="tob-eyebrow">Is this for you?</p>
+    <h2>Made for people who <span class="tob-hl">already tried.</span></h2>
+    <p class="tob-lede">Find where you are on the road right now.</p>
+
+    <ol class="tob-road">
+      <li class="tob-stage x s1">
+        <span class="sn">1</span>
+        <span class="lab">Start</span>
+        <b>Haven't sold yet</b>
+        <p>No product or offer online yet.</p>
+        <span class="vd"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i>Not yet. Make your first sale, then come back.</span>
+      </li>
+      <li class="tob-stage on">
+        <span class="glow" aria-hidden="true"></span>
+        <span class="sn">2</span>
+        <span class="pin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6-5.5-6-10a6 6 0 1 1 12 0c0 4.5-6 10-6 10z"/><circle cx="12" cy="11" r="2"/></svg>Where this guide helps most</span>
+        <span class="lab">Stuck</span>
+        <b>You sold something. Then sales stopped.</b>
+        <p>A few sales. A webinar where nobody bought. Too many offers that don't connect.</p>
+        <span class="vd"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i>This is made for you.</span>
+      </li>
+      <li class="tob-stage x s3">
+        <span class="sn">3</span>
+        <span class="lab">Scale</span>
+        <b>₹10 lakh+ a month, steadily</b>
+        <p>Your system already works.</p>
+        <span class="vd"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i>You've outgrown this.</span>
+      </li>
+    </ol>
+
+    <p class="tob-fit-h">A quick, honest check before you buy.</p>
+    <div class="tob-fit">
+      <div class="tob-fit-card yes">
+        <h3>Yes, this is for you if</h3>
+        <ul>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You're good at something people pay for. From your job, your practice, or years of doing it.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You've <strong>sold something online.</strong> Even a few sales count.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>Your sales slowed down, or your webinar stopped bringing in buyers.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You have 3 ideas for what to sell next, and <strong>can't pick one.</strong></span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span>You're ready to show your face and talk to your buyers.</span></li>
+        </ul>
+      </div>
+      <div class="tob-fit-card no">
+        <h3>No, skip this if</h3>
+        <ul>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>You haven't sold anything yet. Start there, then come back.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>You never want to show your face, and want AI to do the work.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>You want someone to build it all for you.</span></li>
+          <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i><span>You want money this week.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">That's me. Get me unstuck <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- =========================== 7. NEXT 7 DAYS =========================== -->
+<section class="tob-sec tob-cream">
+  <div class="tob-wrap">
+    <p class="tob-eyebrow">After you buy</p>
+    <h2>Your next 7 days, <span class="tob-hl">step by step.</span></h2>
+    <p class="tob-lede">No launch date. No live sessions. You start the same day.</p>
+    <ol class="tob-days">
+      <li class="tob-day"><span class="w"><i>1</i>Right away</span><b>You get everything</b><p>The guide, your plan doc, the calculator and the WhatsApp group.</p></li>
+      <li class="tob-day"><span class="w"><i>2</i>Day 1</span><b>Pick who you help</b><p>Read Module 1 and make your first decision. About 20–30 minutes.</p></li>
+      <li class="tob-day"><span class="w"><i>3</i>This week</span><b>Finish your plan</b><p>One module a day. All 5 decisions, in your own Google Doc.</p></li>
+      <li class="tob-day last"><span class="w"><i>4</i>Then</span><b>Make your first move</b><p>Start selling your small offer. Your premium offer is ready for buyers who want more.</p></li>
+    </ol>
+    <div class="tob-callnote">
+      <span class="tob-av"><img src="https://assets.cdn.filesafe.space/7rxmDgEXJMsPErojoFfx/media/6ab79cd13ae3da26fb757f47.webp" alt="" loading="lazy"></span>
+      <p><b>Want my help to build it?</b> After checkout, you'll see an invite to book a call about my 1:1 mentorship. The call is optional. The guide works on its own.</p>
+    </div>
+    <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">Start my first decision today <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- =========================== 8. FAQ =========================== -->
+<section class="tob-sec tob-paper">
+  <div class="tob-wrap tob-narrow">
+    <p class="tob-eyebrow">Questions</p>
+    <h2>Before you <span class="tob-hl">decide.</span></h2>
+    <div class="tob-faq">
+      <details><summary>I already sell coaching or a course. Will this help?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="a"><p>Yes. You probably have one of the 2 offers already. You'll plan the other one, and connect the two.</p></div></details>
+      <details><summary>I don't have a premium offer yet. Is that okay?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="a"><p>Yes. Module 3 helps you plan it. You don't need it built to start. Plan it first, then build it.</p></div></details>
+      <details><summary>I've bought courses before and got nowhere.<span class="pm" aria-hidden="true"></span></summary>
+        <div class="a"><p>This one is short, and every module ends with a decision. You don't collect notes. You finish with a plan, and one move to make this week.</p></div></details>
+      <details><summary>How much time will this take?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="a"><p>Each module takes about 20–30 minutes. Do one a day, and your plan is done in about a week.</p></div></details>
+      <details><summary>My field is different. Will this work for me?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="a"><p>The model doesn't depend on your field. My clients use it in marketing, language coaching, food, medicine, accounting and more.</p></div></details>
+      <details><summary>Will you review my plan or give me feedback?<span class="pm" aria-hidden="true"></span></summary>
+        <div class="a"><p>No. The guide gives you the tools, prompts and examples to do it yourself. Personal feedback is part of my 1:1 mentorship.</p></div></details>
+    </div>
+    <div class="tob-cta-row"><a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">I'm ready to pick my 2 offers <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+
+<!-- =========================== 9. YOUR CHOICE (sits right above the GHL order form) =========================== -->
+<section class="tob-sec tob-ink tob-final">
+  <div class="tob-wrap">
+    <p class="tob-eyebrow">Your choice</p>
+    <h2>I spent 13 months finding this. <span class="tob-hl">You can start using it today.</span></h2>
+    <p class="tob-lede">You've seen how it works. Now it comes down to one choice.</p>
+
+    <div class="tob-pick">
+      <!-- Left: what happens if they leave -->
+      <div class="tob-pk">
+        <p class="tob-pk-h x"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></i>If you close this page</p>
+        <div class="tob-loopc">
+          <div class="tob-loop" role="img" aria-label="The same loop again: a new offer idea, you build it, a few sales, then quiet, and back to a new offer idea.">
+            <span class="ring" aria-hidden="true"></span>
+            <span class="ctr" aria-hidden="true"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.6-6.4L21 8"/><path d="M21 3v5h-5"/></svg>Start<br>again</span></span>
+            <span class="nd n1" aria-hidden="true">New offer idea</span>
+            <span class="nd n2" aria-hidden="true">Build it</span>
+            <span class="nd n3" aria-hidden="true">A few sales</span>
+            <span class="nd n4" aria-hidden="true">Then quiet</span>
+          </div>
+          <p class="cap">Each round takes weeks. And every time, <b>you start from zero.</b></p>
+        </div>
+      </div>
+
+      <!-- Right: the order receipt -->
+      <div class="tob-pk">
+        <p class="tob-pk-h y"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i>If you start today</p>
+        <div class="tob-rcpt">
+          <p class="rh"><b>Your order</b><span>The Two-Offer Business</span></p>
+          <ul class="items">
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span><b>The 5-module guide</b><small>Short and written. One decision per module.</small></span><em>Included</em></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span><b>My Two-Offer Business Plan</b><small>Your own Google Doc</small></span><em>Included</em></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span><b>The Backwards Calculator</b><small>Your own Google Sheet</small></span><em>Included</em></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span><b>An action tool for each module</b><small>Quick tests, sheets and templates</small></span><em>Included</em></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span><b>4 AI prompts</b><small>A second opinion on your wording</small></span><em>Included</em></li>
+            <li><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg></i><span><b>The WhatsApp group</b><small>Updates, and people building with you</small></span><em>Included</em></li>
+          </ul>
+          <div class="tot"><span>Total today<small>Paid once</small></span><b>₹499</b></div>
+          <a class="tob-btn tob-cta" href="#two-step-order-6kd5Sgoecu">Get The Two-Offer Business <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <ul class="tob-micro">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>Start the same day</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg>No call needed</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.tob -->
+
+<script>
+(function(){
+  /* Build the dot charts */
+  var rows = document.querySelectorAll('.tob .tob-dots');
+  for (var r = 0; r < rows.length; r++){
+    var el = rows[r], s = +el.getAttribute('data-small') || 0, b = +el.getAttribute('data-big') || 0, cold = el.getAttribute('data-cold');
+    var html = '';
+    for (var i = 0; i < b; i++) html += cold ? '<u class="x" aria-hidden="true"></u>' : '<u aria-hidden="true"></u>';
+    for (var j = 0; j < s; j++) html += '<i aria-hidden="true"></i>';
+    el.insertAdjacentHTML('beforeend', html);
+    el.setAttribute('role', 'img');
+  }
+
+  /* Number each bar so they grow one after another */
+  var barSets = document.querySelectorAll('.tob .tob-bars');
+  for (var q = 0; q < barSets.length; q++){
+    var kids = barSets[q].children;
+    for (var n = 0; n < kids.length; n++) kids[n].style.setProperty('--n', n);
+  }
+
+  /* Play the chart and card-fan animations when they scroll into view */
+  var anims = document.querySelectorAll('.tob [data-anim]');
+  var reduce = false;
+  try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+  if (!reduce && 'IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(list){
+      for (var x = 0; x < list.length; x++){
+        if (list[x].isIntersecting){ list[x].target.classList.remove('pre'); io.unobserve(list[x].target); }
+      }
+    }, { threshold: 0.35 });
+    for (var a = 0; a < anims.length; a++){
+      anims[a].classList.add('pre');
+      void anims[a].offsetWidth;
+      io.observe(anims[a]);
+    }
+  }
+
+  /* Every CTA scrolls to the GHL order form */
+  var IDS = ['two-step-order-6kd5Sgoecu', 'two-setp-order-6kd5Sgoecu'];
+  var FALLBACK = '[id^="two-step-order"],[id^="two-setp-order"],[id$="6kd5Sgoecu"]';
+  function findIn(doc){
+    if (!doc) return null;
+    for (var i = 0; i < IDS.length; i++){
+      var el = doc.getElementById(IDS[i]);
+      if (el) return el;
+    }
+    try { return doc.querySelector(FALLBACK); } catch (e) { return null; }
+  }
+  function findTarget(){
+    var el = findIn(document);
+    if (el) return el;
+    try { if (window.parent && window.parent !== window) el = findIn(window.parent.document); } catch (e) {}
+    if (el) return el;
+    try { if (window.top && window.top !== window) el = findIn(window.top.document); } catch (e) {}
+    return el || null;
+  }
+  function goToForm(e){
+    var el = findTarget();
+    if (el){
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return;
+    }
+    try {
+      e.preventDefault();
+      (window.top || window).location.hash = IDS[0];
+    } catch (err) {}
+  }
+  var ctas = document.querySelectorAll('.tob .tob-cta');
+  for (var k = 0; k < ctas.length; k++){
+    ctas[k].setAttribute('href', '#' + IDS[0]);
+    ctas[k].addEventListener('click', goToForm);
+  }
+})();
+</script>

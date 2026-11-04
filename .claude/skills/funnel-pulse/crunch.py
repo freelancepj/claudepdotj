@@ -112,7 +112,10 @@ def main():
         entries_by_answer[norm(ans)] += 1
         p = people.setdefault(e, {"day": ist_day(s["createdAt"]), "answers": [], "campaign": None})
         p["answers"].append(norm(ans))
-        p["campaign"] = p["campaign"] or ed.get("campaign") or (ed.get("url_params") or {}).get("utm_campaign")
+        c = ed.get("campaign") or (ed.get("url_params") or {}).get("utm_campaign")
+        if c and "{{" in c:
+            c = "Broken ad tag (shows {{campaign.name}})"
+        p["campaign"] = p["campaign"] or c
 
     def has_skill(x):
         return x not in NO_SKILL_ANSWERS

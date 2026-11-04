@@ -125,6 +125,15 @@ Commit and push.
 
 Run the `humanize-writing` skill on it before sending (CLAUDE.md rule).
 
+### 8. Email the update
+Send it to `prathameshjiwatode@gmail.com` with Gmail `send_message` (plain
+text `body`, no Markdown). Subject: `3HROBB Funnel Pulse · <D Mon> <morning|evening>`.
+Sections, in order: Money (spend, sales, ₹ back per ₹1, buyers, cost per
+buyer, stuck at checkout), The funnel (every step with count and %), Pop-up
+(skill first try, switchers, who paid), What changed since last run, One thing
+to do, the dashboard link, when the next update comes. Counts only, no
+customer names.
+
 ## Health marks (a guide, not a rule)
 
 For a ₹499 offer from cold Meta traffic: landing page views ÷ outbound clicks

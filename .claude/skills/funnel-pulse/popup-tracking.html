@@ -1,0 +1,48 @@
+<!--
+  3HROBB pop-up open tracking.
+  Paste into GHL: Funnel "1. 3HROBB: DP Funnel" -> sales page step
+  (/3houronlinebusinessbuilder-page) -> Settings -> Tracking Code -> Footer Code.
+  Needs Microsoft Clarity's script on the same page (it already is if Clarity
+  records this page).
+
+  What it sends each time the pop-up opens:
+    Clarity: event "popup_open" + tag popup_opened=yes on the session
+             (unique people = sessions with the event, total = event count)
+    Meta:    custom event "PopupOpen" (only if the Meta pixel is on the page)
+
+  How it spots the pop-up: it watches for a pop-up box that holds a form to
+  become visible (GHL's main pop-up is #hl_main_popup). It doesn't depend on
+  which button was clicked, so every "open pop-up" button counts.
+-->
+<script>
+(function () {
+  var wasOpen = false, opens = 0, queued = false;
+  function visible(el) {
+    var r = el.getBoundingClientRect(), s = getComputedStyle(el);
+    return r.width > 0 && r.height > 0 && s.display !== 'none' && s.visibility !== 'hidden' && s.opacity !== '0';
+  }
+  function popupOpen() {
+    var els = document.querySelectorAll('#hl_main_popup, [id*="popup" i], [class*="popup" i]');
+    for (var i = 0; i < els.length; i++) {
+      if (els[i].querySelector('form, input, textarea') && visible(els[i])) return true;
+    }
+    return false;
+  }
+  function check() {
+    queued = false;
+    var open = popupOpen();
+    if (open && !wasOpen) {
+      opens++;
+      if (typeof window.clarity === 'function') {
+        window.clarity('event', 'popup_open');
+        window.clarity('set', 'popup_opened', 'yes');
+      }
+      if (typeof window.fbq === 'function') window.fbq('trackCustom', 'PopupOpen', { open_number: opens });
+    }
+    wasOpen = open;
+  }
+  function soon() { if (!queued) { queued = true; requestAnimationFrame(function () { setTimeout(check, 150); }); } }
+  new MutationObserver(soon).observe(document.documentElement, { subtree: true, childList: true, attributes: true, attributeFilter: ['class', 'style'] });
+  document.addEventListener('click', soon, true);
+})();
+</script>

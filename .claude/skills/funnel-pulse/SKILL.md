@@ -1,137 +1,140 @@
 ---
 name: funnel-pulse
-description: Twice-a-day funnel check for pdotj.co paid funnels. Pulls Meta Ads (spend, clicks, landing page views), Microsoft Clarity (sessions, scroll, dead/rage clicks, via Windsor), and GoHighLevel (qualifying pop-up answers, checkout orders, order bumps, abandoned checkouts), then explains in plain words where people drop off and what to do next. Use when asked "how's the funnel", "how are the ads doing", "run funnel pulse", or on the 9 am / 5 pm schedule.
+description: Twice-a-day check of the 3HROBB paid funnel (3-Hour Online Business Builder). Pulls Meta Ads (spend, outbound clicks, landing page views), Microsoft Clarity (sessions, scroll, dead/rage clicks, pop-up opens) and GoHighLevel (skill pop-up answers, checkout, paid, order bump), refreshes the "3HROBB Funnel Pulse" dashboard, and sends a short plain-words summary. Use for "how's the funnel", "how are the ads doing", "run funnel pulse", or on the 9 am / 5 pm IST schedule.
 ---
 
-# Funnel Pulse
+# Funnel Pulse (3HROBB only)
 
-Prathamesh's paid funnel has 4 steps. This skill counts people at each step,
-finds the biggest leak, and says what to fix. Write the report at a 3rd-grade
-reading level: short sentences, simple words, friendly tone. Numbers first,
-then what they mean.
+The funnel has these steps. Each run counts people at every step and
+refreshes the dashboard.
 
 ```
-Meta ad ─► Sales page ─► Qualifying pop-up ─► Checkout (+ order bump) ─► Paid
- (Meta)    (Clarity)      (GHL "3hr Form")     (GHL orders)              (GHL)
+Meta ad ─► Sales page ─► Opens pop-up ─► Skill pop-up ─► Checkout (+ bump) ─► Paid
+ Meta       Meta/Clarity   Clarity         GHL form        GHL orders           GHL
 ```
 
-## Fixed IDs (update here if the funnel changes)
+## Rules that don't change
+
+- **3HROBB only.** Leave PES, 2OB and every other product out of everything.
+  Meta campaigns: only names containing `3HROBB`. GHL orders: only funnel
+  `GtYMbm8TlxDQY8bhVJGR`.
+- **Read-only.** Never pause, edit or create anything in Meta, GHL or Clarity.
+  Only suggest.
+- **Words to use:** "Outbound clicks" (Meta `outbound_clicks`), "Landing page
+  views" (Meta `landing_page_view`), "Has a skill" / "No skill yet". Never call
+  people "qualified". The pop-up exists to sort skill vs no skill.
+- **Always show % next to counts.**
+- No customer names, emails or phone numbers anywhere: dashboard, commits or
+  messages. Counts only.
+- Skip test orders from `prathameshjiwatode@gmail.com`.
+- Write for a 3rd-grade reading level: short sentences, simple words.
+
+## Fixed IDs
 
 | Thing | Value |
 |---|---|
 | Meta ad account | `574387113125115` ("pdotj", INR) |
 | GHL location | `7rxmDgEXJMsPErojoFfx` |
-| Pop-up form (3HROBB) | `CyZmHqBkl6Ui6hqlgNCc` ("3hr Form") on `/3houronlinebusinessbuilder-page` |
+| Pop-up form | `CyZmHqBkl6Ui6hqlgNCc` ("3hr Form") on `/3houronlinebusinessbuilder-page` |
 | Pop-up question field | `6e8IhdbRJNAroc684OOb` |
-| Qualified answers | "2 to 5 years", "More than 5 years" → go to checkout |
-| Disqualified answers | "Less than 2 Years", "I don't have a skill yet" |
-| 3HROBB funnel | `GtYMbm8TlxDQY8bhVJGR`, checkout `/3hr-cp`, ₹499 main, ₹1,498 with bump |
-| PES funnel | `HqPJjmagGiB5mvWuSGrH`, checkout `pdotj.co/pes` |
-| Test orders to skip | `prathameshjiwatode@gmail.com` |
+| No-skill answer | "I don't have a skill yet" (every other answer = has a skill) |
+| Checkout | `/3hr-cp`, ₹499, ₹1,498 with order bump |
+| Dashboard | https://claude.ai/artifact/VYuSVkwRofkcuFrfFcGVVH |
+| Dashboard datasets | `summary`, `funnel`, `daily`, `campaigns`, `answers` |
 | Time zone | Asia/Kolkata (IST) |
 
-Campaign → product match uses the campaign name: `3HROBB` = 3-Hour Online
-Business Builder, `2OB` = Two-Offer Business Blueprint, `PES` = PES coaching.
+## Window
 
-## Time windows
-
-- **Morning run (before ~12:00 IST):** "Yesterday" (full day) + "Last 7 days".
-- **Evening run (after ~12:00 IST):** "Today so far" + "Last 7 days".
-
-GHL dates are day-level; pass the day range to the API, then pass exact
-`--since/--until` (UTC) to `crunch.py`. IST = UTC + 5:30, so IST midnight
-on day D is `D-1T18:30` UTC.
+Always the last 7 IST days plus today so far: `START` = today − 7 days,
+`END` = today (IST dates). Label: `Last 7 days · <D Mon> to <D Mon> (today so far)`.
 
 ## Steps
 
-### 1. Meta Ads (Meta_Ads MCP)
-`ads_get_ad_entities` on account `574387113125115`, `level=campaign`, filter
-`amount_spent > 0`, once for the short window (`yesterday` or `today`) and
-once for `last_7d`. Fields:
-`id, name, amount_spent, impressions, cpm, ctr, link_click, cost_per_link_click, landing_page_view, lead, omni_initiated_checkout, omni_purchase, omni_purchase_values, frequency`.
-Set `scheduled_task_run=true` when running from the schedule. Save each
-result's JSON to the scratchpad (for example `meta_7d.json`).
+Keep a scratch folder (for example `$SCRATCH/run`). Save every tool answer
+there as a JSON file, exactly as it came back.
 
-If an ad set or ad needs a closer look (for example one campaign has high
-spend and no sales), go one level down for that campaign only.
+### 1. Meta Ads
+`ads_get_ad_entities` on `574387113125115`, `level=campaign`,
+`time_increment="1"`, filter `name CONTAIN 3HROBB`, fields
+`id, name, amount_spent, impressions, outbound_clicks, landing_page_view, omni_purchase, ctr, frequency`.
+Call it twice: `date_preset=last_7d` and `date_preset=today`. Save as
+`meta_7d.json` and `meta_today.json`. Pass `scheduled_task_run=true` on a
+scheduled run.
 
-### 2. GHL pop-up + orders (GoHighlevel MCP)
-- `get-forms-submissions` with `formId=CyZmHqBkl6Ui6hqlgNCc`, `limit=100`,
-  `startAt`/`endAt` as `YYYY-MM-DD`. The result is big and gets saved to a
-  file. Use that file path, don't read it by hand. Follow `meta.nextPage`.
-- `list-orders` with `altType=location`, `altId=7rxmDgEXJMsPErojoFfx`,
-  `limit=100`, same dates. Save the JSON to a file.
+### 2. GoHighLevel
+- `get-forms-submissions`: `formId=CyZmHqBkl6Ui6hqlgNCc`, `limit=100`,
+  `startAt=START`, `endAt=END+1 day` (`YYYY-MM-DD`). Big answers get saved to a
+  file for you. Use that path and don't read it by hand. Follow
+  `meta.nextPage`.
+- `list-orders`: `altType=location`, `altId=7rxmDgEXJMsPErojoFfx`,
+  `limit=100`, same dates.
 
-### 3. Microsoft Clarity (Windsor MCP, connector `microsoft_clarity`)
-Run `get_connectors`. If `microsoft_clarity` has no account, say in the report:
-"Clarity is not connected yet, so I can't see what people do on the sales
-page." Then skip this step. If it is connected: `get_fields` first, then
-`get_data` for the last 1–3 days (Clarity only keeps about 3 days in its API).
-Pull per-URL for the sales page and the checkout page: sessions, scroll depth,
-time on page, dead clicks, rage clicks, quickbacks, and device split.
-Mobile vs desktop matters most, since almost all Meta traffic is mobile.
+### 3. Microsoft Clarity (its own connector, "Microsoft Clarity")
+Load its tools with ToolSearch (`clarity`). Use **Query Analytics Dashboard**
+for the sales page URL (`/3houronlinebusinessbuilder-page`), last 1–3 days
+(Clarity's API only goes back about 3 days). Get: sessions, average scroll
+depth %, dead clicks, rage clicks, share of sessions on mobile, and, if the
+pop-up tracking code is live, the custom event `popup_open` (sessions with it =
+`popup_openers`, total count = `popup_opens`). Write what you got to
+`clarity.json` with those key names (`sessions`, `scroll_depth_pct`,
+`dead_clicks`, `rage_clicks`, `mobile_share_pct`, `popup_openers`,
+`popup_opens`). Leave out any key you couldn't get. If the connector isn't
+there, skip this file and say so in the summary.
+
+Note: Clarity covers fewer days than the 7-day window. Say "last N days" when
+you mention Clarity numbers.
 
 ### 4. Crunch
 ```bash
 python3 -I .claude/skills/funnel-pulse/crunch.py \
-  --forms <forms file> --orders <orders file> --meta <meta_7d file> \
-  --since <UTC ISO> --until <UTC ISO>
+  --forms <forms file(s)> --orders <orders file> \
+  --meta meta_7d.json --meta meta_today.json [--clarity clarity.json] \
+  --start START --end END --label "<label>" --out $SCRATCH/run/out
 ```
-Run it once per window. It removes test orders, removes duplicate people, and
-counts people who changed their pop-up answer to get through.
+It drops test orders and other products, counts each person once, and writes
+`summary.json`, `funnel.json`, `daily.json`, `campaigns.json` and
+`answers.json`.
 
-### 5. Work out the funnel (per product, mostly 3HROBB)
+### 5. Refresh the dashboard
+1. `ArtifactData` `list` collection `datasets` on the dashboard URL. Note each
+   document's `version` and its old `source.url`.
+2. Upload each of the 5 files: `Artifact` publish with `url` = dashboard,
+   `asset: true`, `file_path` = the file (one call per JSON file).
+3. One `ArtifactData` `batch` of 5 `update`s, each pinned with `if_version`:
+   `source: {kind: "file", url: "<new /_blob/ url>", name: "<id>.json", format: "json"}`,
+   `updated: {at: <UTC ISO now>, by: "Funnel Pulse run (Meta Ads + GHL + Clarity)"}`,
+   `edit: {via: "claude", at: <UTC ISO now>}`.
+4. Delete each old blob (`Artifact` `action: "delete"`, `url` = dashboard,
+   `path` = the old 32-character id), since nothing points at it any more.
+Don't change `files/index.html` on a scheduled run.
 
-| Step | Number | Rate to show |
-|---|---|---|
-| Ad spend | Meta `amount_spent` | — |
-| Clicks | Meta `link_click` | CTR, CPC |
-| Sales page views | Meta `landing_page_view` (Clarity sessions if connected) | LPV ÷ clicks |
-| Pop-up filled | crunch `unique_people` | ÷ page views |
-| Qualified | crunch `ever_qualified` (and `qualified_first_try`) | ÷ pop-up |
-| Reached checkout | crunch funnel `people_reached_checkout` | ÷ qualified |
-| Paid | crunch funnel `people_paid` | ÷ checkout |
-| Order bump | `bump_orders` | ÷ paid |
-| Revenue | `revenue_inr` | ROAS = revenue ÷ spend, cost per sale = spend ÷ paid |
+### 6. Save a snapshot
+Copy `summary.json` and `funnel.json` to
+`reports/funnel-pulse/snapshots/YYYY-MM-DD-am/` (or `-pm`, by IST time before
+or after 12:00). Compare with the newest earlier snapshot for the summary.
+Commit and push.
 
-Rough health marks for a ₹499 offer from cold Meta traffic (use as a guide,
-not a rule): CTR (all) ≥ 1.5%, LPV ÷ clicks ≥ 75%, pop-up ÷ LPV ≥ 15%,
-paid ÷ checkout ≥ 50%, bump take ≥ 20%, frequency < 3. Front-end ROAS under
-1 is normal for a tripwire only if the ₹30K–50K back-end offer catches up, so
-say that out loud and don't panic over it.
+### 7. The summary (final message, shows on the phone)
+3–5 short lines, plain words, numbers with %:
+- Sales vs ad spend, and ₹ back for every ₹1.
+- The biggest drop in the funnel (step → step, % kept).
+- Anything that changed a lot since the last snapshot.
+- One thing to do today (for example: "2 people are stuck at checkout,
+  ₹998. Send them a WhatsApp.").
+- The dashboard link.
 
-Also check:
-- **Answer-switchers:** people who were disqualified and then changed their
-  answer. If many of them buy, the pop-up is just a speed bump, not a filter.
-- **Meta vs GHL sales gap:** Meta purchases vs GHL paid orders. A big gap
-  means tracking is off (pixel/CAPI), and Meta is optimizing on bad data.
-- **No-UTM entries:** people coming back without UTMs ("Direct traffic").
-  Normal for returning visitors, but it hides which ad brought them.
-- **Abandoned checkouts:** unpaid orders with no later paid order. Count and
-  ₹ value. These people are worth a WhatsApp or email follow-up.
+Run the `humanize-writing` skill on it before sending (CLAUDE.md rule).
 
-### 6. Write the report
-Save to `reports/funnel-pulse/YYYY-MM-DD-am.md` (or `-pm.md`). Layout:
+## Health marks (a guide, not a rule)
 
-1. **The short version.** 3–5 lines: money in, money out, the one biggest
-   leak, the one thing to do today.
-2. **Funnel table.** The step table above, short window and 7-day side by side.
-3. **Ads.** One line per campaign: spend, clicks, sales (GHL), cost per sale,
-   and a simple verdict (keep / watch / pause-worthy). Never pause or change
-   anything yourself. Only suggest.
-4. **Sales page (Clarity).** Scroll depth, dead/rage clicks, mobile vs desktop.
-5. **Pop-up.** Answers, switchers, how many disqualified people still bought.
-6. **Checkout.** Paid vs abandoned, bump take rate, ₹ left on the table.
-7. **What changed since last run.** Compare with the newest file in
-   `reports/funnel-pulse/`.
-8. **To do.** 1–3 actions, most important first.
+For a ₹499 offer from cold Meta traffic: landing page views ÷ outbound clicks
+≥ 75%, pop-up fills ÷ landing page views ≥ 15%, paid ÷ checkout ≥ 50%, bump ≥
+20% of buyers, frequency < 3. Under ₹1 back per ₹1 is fine for a tripwire only
+if the ₹30K–50K back-end offer makes up the gap, so say that and don't panic.
 
-No customer names, emails, or phone numbers in the report. Use counts only.
-
-Per CLAUDE.md, run the `humanize-writing` skill on the report as a final pass
-before saving it.
-
-### 7. Ship it
-Commit the report and push (see the scheduled prompt for the branch). End the
-session with the "short version" as the final message so the phone
-notification shows it.
+Also watch:
+- **Switchers:** people who said "no skill", then changed their answer to get
+  through. If many of them buy, the pop-up is a speed bump, not a sorter.
+- **Meta vs GHL buyers:** a big gap means pixel or CAPI tracking is off.
+- **Stuck at checkout:** unpaid orders with no later paid order. These are
+  worth a WhatsApp follow-up.

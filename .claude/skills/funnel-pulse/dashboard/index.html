@@ -1,0 +1,391 @@
+<meta name="dash-one-writer">
+<style>
+#dash-root .fp { display: grid; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); }
+#dash-root .fp-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+#dash-root .fp-sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: var(--cds-gap-xs) 0 0; }
+#dash-root .fp-take { font-size: var(--cds-font-size-body); line-height: 1.55; margin: var(--cds-gap-sm) 0 0; max-width: 72ch; }
+#dash-root .fp-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 10.5rem), 1fr)); gap: var(--cds-gap-md); }
+#dash-root .fp-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md); display: grid; gap: var(--cds-gap-xs); align-content: start; }
+#dash-root .fp-lbl { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+#dash-root .fp-val { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; line-height: 1.1; }
+#dash-root .fp-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+#dash-root .fp-bad { color: var(--color-bad); }
+#dash-root .fp-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); min-width: 0; align-content: start; }
+#dash-root .fp-card h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+#dash-root .fp-card p { margin: 0; line-height: 1.55; }
+#dash-root .fp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+#dash-root .fp-scroll { overflow-x: auto; }
+#dash-root table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: var(--cds-font-size-body); }
+#dash-root th { text-align: left; font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); padding: var(--cds-pad-xs) var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+#dash-root td { padding: var(--cds-pad-sm); border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+#dash-root th.num, #dash-root td.num { text-align: right; }
+#dash-root tr.fp-loss td { color: var(--color-bad); }
+#dash-root tr.fp-loss td:first-child { font-weight: var(--cds-font-weight-medium); }
+#dash-root .fp-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+#dash-root .fp-legend span { display: inline-flex; align-items: center; gap: var(--cds-gap-xs); }
+#dash-root .fp-sw { width: .65rem; height: .65rem; border-radius: 2px; display: inline-block; }
+#dash-root .fp-chart { position: relative; min-height: 240px; }
+#dash-root .fp-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); white-space: nowrap; z-index: 2; }
+#dash-root .fp-tip .t { color: var(--cds-text-secondary); }
+#dash-root .fp-bars { display: grid; gap: var(--cds-gap-sm); position: relative; min-height: 160px; }
+#dash-root .fp-bar-row { display: grid; gap: 4px; }
+#dash-root .fp-bar-top { display: flex; justify-content: space-between; gap: var(--cds-gap-sm); font-size: var(--cds-font-size-caption); }
+#dash-root .fp-bar-track { height: 14px; background: var(--cds-chart-grid); border-radius: var(--cds-radius); overflow: hidden; }
+#dash-root .fp-bar-fill { height: 100%; border-radius: var(--cds-radius); }
+#dash-root .fp-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 8rem), 1fr)); gap: var(--cds-gap-md); }
+#dash-root .fp-stat { display: grid; gap: 2px; }
+#dash-root .fp-stat b { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-heading); font-variant-numeric: tabular-nums; }
+#dash-root .fp-foot { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; }
+#dash-root [data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="fp">
+  <header class="fp-head" id="top">
+    <h1>3HROBB Funnel Pulse</h1>
+    <p class="fp-sub"><span data-draw="window" data-source="summary" data-field="window" data-row="0">—</span> · Updated <span data-draw="updated" data-source="summary" data-field="updated_ist" data-row="0">—</span></p>
+    <p class="fp-take">Out of <b data-draw="t_lpv" data-source="funnel" data-field="people" data-where="step=Landing page views">—</b> people who saw the sales page, only <b data-draw="t_pop" data-source="funnel" data-field="people" data-where="step=Filled the pop-up">—</b> filled in the pop-up. The biggest drop is <b data-draw="biggest" data-source="funnel_pct">—</b>. For every ₹1 spent on ads, <b data-draw="t_roas" data-source="money" data-field="roas" data-row="0">—</b> came back as sales.</p>
+  </header>
+
+  <section class="fp-tiles" id="money" aria-label="Money">
+    <div class="fp-tile"><span class="fp-lbl">Sales</span><span class="fp-val" data-draw="revenue" data-source="summary" data-field="revenue" data-row="0">—</span><span class="fp-note">Paid orders in GHL</span></div>
+    <div class="fp-tile"><span class="fp-lbl">Ad spend</span><span class="fp-val" data-draw="spend" data-source="summary" data-field="spend" data-row="0">—</span><span class="fp-note">3HROBB campaigns in Meta</span></div>
+    <div class="fp-tile"><span class="fp-lbl">Back for every ₹1</span><span class="fp-val" data-draw="roas" data-source="money" data-field="roas" data-row="0">—</span><span class="fp-note">Sales ÷ ad spend</span></div>
+    <div class="fp-tile"><span class="fp-lbl">Ad cost per buyer</span><span class="fp-val" data-draw="cps" data-source="money" data-field="cost_per_sale" data-row="0">—</span><span class="fp-note">Price is ₹499</span></div>
+    <div class="fp-tile"><span class="fp-lbl">Buyers</span><span class="fp-val" data-draw="buyers" data-source="summary" data-field="paid_people" data-row="0">—</span><span class="fp-note">Meta counted <span data-draw="metabuy" data-source="summary" data-field="meta_purchases" data-row="0">—</span></span></div>
+    <div class="fp-tile"><span class="fp-lbl">Stuck at checkout</span><span class="fp-val fp-bad" data-draw="aband_val" data-source="summary" data-field="abandoned_value" data-row="0">—</span><span class="fp-note"><span data-draw="aband_n" data-source="summary" data-field="abandoned_people" data-row="0">—</span> people didn't pay yet</span></div>
+  </section>
+
+  <section class="fp-card" id="funnel">
+    <h2>The funnel, step by step</h2>
+    <p class="fp-note">Each person counted once. "% of step before" shows how many made it from the step above. The red row is the biggest drop. "Opened the pop-up" fills in once pop-up click tracking is on.</p>
+    <div class="fp-scroll">
+      <table data-source="funnel_pct" data-row-key="step" aria-label="Funnel steps">
+        <thead><tr>
+          <th data-field="step">Step</th>
+          <th class="num" data-field="people">People</th>
+          <th class="num" data-field="pct_prev">% of step before</th>
+          <th class="num" data-field="pct_clicks">% of clicks</th>
+          <th data-field="source">From</th>
+        </tr></thead>
+        <tbody data-draw="funnel_rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="fp-card" id="daily">
+    <h2>Day by day</h2>
+    <p class="fp-note">Page views, pop-up fills and buyers on one scale, so you can see how few people move past the page each day. Days are in IST.</p>
+    <div class="fp-legend">
+      <span><i class="fp-sw" data-sw="0"></i>Landing page views</span>
+      <span><i class="fp-sw" data-sw="1"></i>Filled the pop-up</span>
+      <span><i class="fp-sw" data-sw="2"></i>Paid</span>
+    </div>
+    <div class="fp-chart" data-draw="daily_chart" data-source="daily">—</div>
+  </section>
+
+  <div class="fp-grid">
+    <section class="fp-card" id="popup">
+      <h2>Pop-up: skill or no skill</h2>
+      <p class="fp-note">What people picked the first time they filled it in.</p>
+      <div class="fp-bars" data-draw="answers_chart" data-source="answers">—</div>
+      <p><b data-draw="skill_first" data-source="summary" data-field="skill_first_try" data-row="0">—</b> of <b data-draw="pop_people" data-source="summary" data-field="popup_people" data-row="0">—</b> people said they have a skill on the first try. <b data-draw="switched" data-source="summary" data-field="switched_to_skill" data-row="0">—</b> said "no skill" first, then changed their answer, and <b data-draw="sw_paid" data-source="summary" data-field="switchers_paid" data-row="0">—</b> of them paid. <b data-draw="blocked" data-source="summary" data-field="no_skill_blocked" data-row="0">—</b> said "no skill" and stopped there.</p>
+    </section>
+
+    <section class="fp-card" id="opens">
+      <h2>Pop-up opens</h2>
+      <p class="fp-note">The missing step between "saw the page" and "filled the pop-up".</p>
+      <p class="po-off">Not tracked yet. Once the pop-up tracking code is on the sales page, this shows how many people opened the pop-up and then left without filling it in.</p>
+      <div class="fp-stats po-on" hidden>
+        <div class="fp-stat"><span class="fp-lbl">People who opened it</span><b data-draw="openers" data-source="summary" data-field="popup_openers" data-row="0">—</b></div>
+        <div class="fp-stat"><span class="fp-lbl">Total opens</span><b data-draw="opens" data-source="summary" data-field="popup_opens" data-row="0">—</b></div>
+      </div>
+      <h2>Sales page (Clarity)</h2>
+      <p class="cl-off">Clarity isn't in the report yet. The next scheduled run reads it from your Clarity connector.</p>
+      <div class="fp-stats cl-on" hidden>
+        <div class="fp-stat"><span class="fp-lbl">Sessions</span><b data-draw="cl_sess" data-source="summary" data-field="clarity_sessions" data-row="0">—</b></div>
+        <div class="fp-stat"><span class="fp-lbl">Avg scroll depth</span><b data-draw="cl_scroll" data-source="summary" data-field="scroll_depth_pct" data-row="0">—</b></div>
+        <div class="fp-stat"><span class="fp-lbl">On mobile</span><b data-draw="cl_mob" data-source="summary" data-field="mobile_share_pct" data-row="0">—</b></div>
+        <div class="fp-stat"><span class="fp-lbl">Dead clicks</span><b data-draw="cl_dead" data-source="summary" data-field="dead_clicks" data-row="0">—</b></div>
+        <div class="fp-stat"><span class="fp-lbl">Rage clicks</span><b data-draw="cl_rage" data-source="summary" data-field="rage_clicks" data-row="0">—</b></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="fp-card" id="ads">
+    <h2>Ad campaigns</h2>
+    <p class="fp-note">Pop-up fills and buyers are matched to the ad they first came from. Some people come back later with no ad tag.</p>
+    <div class="fp-scroll">
+      <table data-source="campaign_rows" data-row-key="campaign" aria-label="Campaigns">
+        <thead><tr>
+          <th data-field="campaign">Campaign</th>
+          <th class="num" data-field="spend">Spend</th>
+          <th class="num" data-field="clicks">Outbound clicks</th>
+          <th class="num" data-field="lpv">Landing page views</th>
+          <th class="num" data-field="popup_people">Filled pop-up</th>
+          <th class="num" data-field="paid">Paid</th>
+          <th class="num" data-field="cost_per_sale">Ad cost per buyer</th>
+        </tr></thead>
+        <tbody data-draw="campaign_table"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <p class="fp-foot">3HROBB only. PES and 2OB are left out, and so are your own test orders. Ad numbers come from Meta, pop-up and sales numbers from GHL. Refreshed at 9 am and 5 pm IST.</p>
+</div>
+
+<script>
+window.fpN = (v) => (v === null || v === undefined || v === '') ? null : Number(v);
+window.fpRows = (id) => { const d = dash.data(id); return d.status === 'ok' && Array.isArray(d.data) ? d.data : null; };
+window.fpFmt = {
+  inr: (v) => '₹' + d3.format(',.0f')(v),
+  inr2: (v) => '₹' + d3.format('.2f')(v),
+  int: (v) => d3.format(',')(v),
+  pct: (v) => d3.format('.1f')(v) + '%',
+  text: (v) => String(v),
+};
+
+dash.calc('money', {
+  inputs: ['summary'],
+  title: 'Return and cost per buyer',
+  description: 'Sales divided by ad spend, and ad spend divided by buyers.',
+  fn: (summary) => {
+    const s = summary[0] || {};
+    const spend = Number(s.spend), revenue = Number(s.revenue), buyers = Number(s.paid_people);
+    return [{
+      roas: spend ? Math.round(revenue / spend * 100) / 100 : null,
+      cost_per_sale: buyers ? Math.round(spend / buyers) : null,
+    }];
+  },
+});
+
+dash.calc('funnel_pct', {
+  inputs: ['funnel'],
+  title: 'Funnel with percentages',
+  description: 'Each step as a share of the step before it (skipping untracked steps) and of outbound clicks.',
+  fn: (funnel) => {
+    const rows = [...funnel].sort((a, b) => Number(a.order) - Number(b.order));
+    const num = (v) => (v === null || v === undefined || v === '') ? null : Number(v);
+    const clicks = num(rows[0] && rows[0].people);
+    let prev = null;
+    return rows.map((r) => {
+      const p = num(r.people);
+      const out = {
+        order: Number(r.order), step: r.step, people: p, source: r.source,
+        pct_prev: (p === null || !prev) ? null : Math.round(p / prev * 1000) / 10,
+        pct_clicks: (p === null || !clicks) ? null : Math.round(p / clicks * 1000) / 10,
+      };
+      if (p !== null) prev = p;
+      return out;
+    });
+  },
+});
+
+dash.calc('campaign_rows', {
+  inputs: ['campaigns'],
+  title: 'Campaigns with cost per buyer',
+  description: 'Ad spend divided by buyers matched to each campaign.',
+  fn: (campaigns) => campaigns.map((c) => ({
+    campaign: c.campaign,
+    spend: Number(c.spend), clicks: Number(c.clicks), lpv: Number(c.lpv),
+    popup_people: Number(c.popup_people), paid: Number(c.paid),
+    cost_per_sale: Number(c.paid) && Number(c.spend) ? Math.round(Number(c.spend) / Number(c.paid)) : null,
+  })),
+});
+
+// Simple value drawings: [draw name, source, field, format, where (optional)]
+[
+  ['window', 'summary', 'window', 'text'], ['updated', 'summary', 'updated_ist', 'text'],
+  ['revenue', 'summary', 'revenue', 'inr'], ['spend', 'summary', 'spend', 'inr'],
+  ['buyers', 'summary', 'paid_people', 'int'], ['metabuy', 'summary', 'meta_purchases', 'int'],
+  ['aband_val', 'summary', 'abandoned_value', 'inr'], ['aband_n', 'summary', 'abandoned_people', 'int'],
+  ['skill_first', 'summary', 'skill_first_try', 'int'], ['pop_people', 'summary', 'popup_people', 'int'],
+  ['switched', 'summary', 'switched_to_skill', 'int'], ['sw_paid', 'summary', 'switchers_paid', 'int'],
+  ['blocked', 'summary', 'no_skill_blocked', 'int'],
+  ['openers', 'summary', 'popup_openers', 'int'], ['opens', 'summary', 'popup_opens', 'int'],
+  ['cl_sess', 'summary', 'clarity_sessions', 'int'], ['cl_scroll', 'summary', 'scroll_depth_pct', 'pct'],
+  ['cl_mob', 'summary', 'mobile_share_pct', 'pct'], ['cl_dead', 'summary', 'dead_clicks', 'int'],
+  ['cl_rage', 'summary', 'rage_clicks', 'int'],
+  ['roas', 'money', 'roas', 'inr2'], ['t_roas', 'money', 'roas', 'inr2'], ['cps', 'money', 'cost_per_sale', 'inr'],
+  ['t_lpv', 'funnel', 'people', 'int', 'Landing page views'], ['t_pop', 'funnel', 'people', 'int', 'Filled the pop-up'],
+].forEach(([name, id, field, fmt, step]) => {
+  dash.draw(name, (el) => {
+    const rows = fpRows(id);
+    const r = rows ? (step ? rows.find((x) => x.step === step) : rows[0]) : null;
+    const v = r ? r[field] : null;
+    el.textContent = (v === null || v === undefined || v === '') ? '—' : fpFmt[fmt](fmt === 'text' ? v : fpN(v));
+  });
+});
+
+// Which sentences show: tracked vs not tracked
+dash.onData(() => {
+  const s = (fpRows('summary') || [])[0];
+  const opensOn = !!s && fpN(s.popup_openers) !== null;
+  const clarityOn = !!s && fpN(s.clarity_sessions) !== null;
+  document.querySelectorAll('.po-on').forEach((x) => { x.hidden = !opensOn; });
+  document.querySelectorAll('.po-off').forEach((x) => { x.hidden = opensOn; });
+  document.querySelectorAll('.cl-on').forEach((x) => { x.hidden = !clarityOn; });
+  document.querySelectorAll('.cl-off').forEach((x) => { x.hidden = clarityOn; });
+  document.querySelectorAll('[data-sw]').forEach((x) => { x.style.background = dash.colors[Number(x.dataset.sw)]; });
+});
+
+window.fpBiggest = (rows) => {
+  let worst = null;
+  rows.forEach((r, i) => {
+    if (r.order >= 2 && r.order <= 7 && r.pct_prev !== null && (!worst || r.pct_prev < worst.r.pct_prev)) {
+      let j = i - 1; while (j >= 0 && rows[j].people === null) j--;
+      worst = { r, from: rows[j] };
+    }
+  });
+  return worst;
+};
+
+dash.draw('biggest', (el) => {
+  const rows = fpRows('funnel_pct');
+  const w = rows && fpBiggest(rows);
+  el.textContent = w ? `from "${w.from.step}" to "${w.r.step}" (${fpFmt.pct(w.r.pct_prev)} kept)` : '—';
+});
+
+dash.draw('funnel_rows', (tb) => {
+  const rows = fpRows('funnel_pct');
+  tb.replaceChildren();
+  if (!rows) return;
+  const w = fpBiggest(rows);
+  const max = d3.max(rows, (r) => r.people) || 1;
+  rows.forEach((r) => {
+    const tr = document.createElement('tr');
+    if (w && w.r.step === r.step) tr.className = 'fp-loss';
+    const cells = [
+      [r.step, ''],
+      [r.people === null ? '—' : fpFmt.int(r.people), 'num'],
+      [r.pct_prev === null ? '—' : fpFmt.pct(r.pct_prev), 'num'],
+      [r.pct_clicks === null ? '—' : fpFmt.pct(r.pct_clicks), 'num'],
+      [r.source, ''],
+    ];
+    cells.forEach(([t, c], i) => {
+      const td = document.createElement('td');
+      td.textContent = t;
+      if (c) td.className = c;
+      if (i === 1 && r.people !== null) {
+        const pct = Math.max(1.5, r.people / max * 100);
+        const col = (w && w.r.step === r.step) ? 'var(--cds-chart-status-critical)' : dash.colors[0];
+        td.style.background = `linear-gradient(to left, color-mix(in srgb, ${col} 22%, transparent) ${pct}%, transparent ${pct}%)`;
+      }
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+});
+
+dash.draw('campaign_table', (tb) => {
+  const rows = fpRows('campaign_rows');
+  tb.replaceChildren();
+  if (!rows) return;
+  rows.forEach((r) => {
+    const tr = document.createElement('tr');
+    [
+      [r.campaign, ''], [fpFmt.inr(r.spend), 'num'], [fpFmt.int(r.clicks), 'num'], [fpFmt.int(r.lpv), 'num'],
+      [fpFmt.int(r.popup_people), 'num'], [fpFmt.int(r.paid), 'num'],
+      [r.cost_per_sale === null ? '—' : fpFmt.inr(r.cost_per_sale), 'num'],
+    ].forEach(([t, c]) => {
+      const td = document.createElement('td');
+      td.textContent = t;
+      if (c) td.className = c;
+      tr.appendChild(td);
+    });
+    tb.appendChild(tr);
+  });
+});
+
+dash.draw('answers_chart', (el) => {
+  const rows = fpRows('answers');
+  el.replaceChildren();
+  if (!rows) { el.textContent = '—'; return; }
+  const max = d3.max(rows, (r) => Number(r.first_answer_people)) || 1;
+  const tip = document.createElement('div');
+  tip.className = 'fp-tip'; tip.hidden = true;
+  rows.forEach((r) => {
+    const n = Number(r.first_answer_people);
+    const row = document.createElement('div'); row.className = 'fp-bar-row';
+    const top = document.createElement('div'); top.className = 'fp-bar-top';
+    const a = document.createElement('span'); a.textContent = r.answer;
+    const b = document.createElement('span'); b.textContent = `${n} ${n === 1 ? 'person' : 'people'}`;
+    top.append(a, b);
+    const track = document.createElement('div'); track.className = 'fp-bar-track';
+    const fill = document.createElement('div'); fill.className = 'fp-bar-fill';
+    fill.style.width = `${n / max * 100}%`;
+    fill.style.background = r.skill === 'No skill yet' ? dash.colors[1] : dash.colors[0];
+    track.appendChild(fill);
+    row.append(top, track);
+    row.addEventListener('mousemove', (ev) => {
+      const box = el.getBoundingClientRect();
+      tip.replaceChildren();
+      const t = document.createElement('div'); t.className = 't'; t.textContent = r.answer;
+      const l1 = document.createElement('div'); l1.textContent = `${r.skill} · ${n} picked it first`;
+      const l2 = document.createElement('div'); l2.textContent = `${r.all_entries} entries in total, incl. retries`;
+      tip.append(t, l1, l2);
+      tip.hidden = false;
+      const x = Math.min(ev.clientX - box.left + 12, box.width - tip.offsetWidth - 4);
+      tip.style.left = Math.max(0, x) + 'px';
+      tip.style.top = (ev.clientY - box.top + 12) + 'px';
+    });
+    row.addEventListener('mouseleave', () => { tip.hidden = true; });
+    el.appendChild(row);
+  });
+  el.appendChild(tip);
+});
+
+dash.draw('daily_chart', (el) => {
+  const rows = fpRows('daily');
+  el.replaceChildren();
+  if (!rows) { el.textContent = '—'; return; }
+  const keys = [['lpv', 'Landing page views'], ['popup_people', 'Filled the pop-up'], ['paid', 'Paid']];
+  const data = rows.map((r) => ({ day: new Date(r.day + 'T00:00:00Z'), spend: Number(r.spend), lpv: Number(r.lpv), popup_people: Number(r.popup_people), paid: Number(r.paid) }));
+  const W = Math.max(280, el.clientWidth), H = 240, mt = 8, mb = 26, mr = 4;
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img').attr('aria-label', 'Daily page views, pop-up fills and buyers');
+  const y = d3.scaleLinear([0, d3.max(data, (d) => Math.max(d.lpv, d.popup_people, d.paid)) || 1], [H - mb, mt]).nice();
+  const ticks = y.ticks(4);
+  const probe = svg.append('text').attr('font-size', 11).text(d3.format(',')(d3.max(ticks)));
+  const ml = Math.ceil(probe.node().getComputedTextLength()) + 10;
+  probe.remove();
+  const x0 = d3.scaleBand(data.map((d) => +d.day), [ml, W - mr]).paddingInner(0.28).paddingOuter(0.1);
+  const x1 = d3.scaleBand(keys.map((k) => k[0]), [0, x0.bandwidth()]).padding(0.12);
+  svg.append('g').selectAll('line').data(ticks).join('line')
+    .attr('x1', ml).attr('x2', W - mr).attr('y1', (t) => y(t)).attr('y2', (t) => y(t))
+    .attr('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
+  svg.append('g').selectAll('text').data(ticks).join('text')
+    .attr('x', ml - 6).attr('y', (t) => y(t)).attr('dy', '0.32em').attr('text-anchor', 'end')
+    .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((t) => d3.format(',')(t));
+  const every = x0.bandwidth() < 34 ? 2 : 1;
+  svg.append('g').selectAll('text').data(data.filter((d, i) => i % every === 0)).join('text')
+    .attr('x', (d) => x0(+d.day) + x0.bandwidth() / 2).attr('y', H - 8).attr('text-anchor', 'middle')
+    .attr('font-size', 11).attr('fill', 'var(--color-fg-muted)').text((d) => d3.utcFormat('%b %-d')(d.day));
+  const g = svg.append('g').selectAll('g').data(data).join('g').attr('transform', (d) => `translate(${x0(+d.day)},0)`);
+  g.selectAll('rect').data((d) => keys.map(([k], i) => ({ k, i, v: d[k] }))).join('rect')
+    .attr('x', (d) => x1(d.k)).attr('width', x1.bandwidth())
+    .attr('y', (d) => y(d.v)).attr('height', (d) => Math.max(0, y(0) - y(d.v)))
+    .attr('rx', Math.min(3, x1.bandwidth() / 2)).attr('fill', (d) => dash.colors[d.i]);
+  svg.append('line').attr('x1', ml).attr('x2', W - mr).attr('y1', y(0)).attr('y2', y(0)).attr('stroke', 'var(--cds-chart-axis)');
+  const tip = document.createElement('div'); tip.className = 'fp-tip'; tip.hidden = true; el.appendChild(tip);
+  svg.append('g').selectAll('rect').data(data).join('rect')
+    .attr('x', (d) => x0(+d.day) - x0.step() * x0.paddingInner() / 2).attr('width', x0.step())
+    .attr('y', mt).attr('height', H - mt - mb).attr('fill', 'transparent')
+    .on('mousemove', (ev, d) => {
+      tip.replaceChildren();
+      const t = document.createElement('div'); t.className = 't'; t.textContent = d3.utcFormat('%a %b %-d')(d.day) + ' · ' + fpFmt.inr(d.spend) + ' spent';
+      tip.appendChild(t);
+      keys.forEach(([k, name], i) => {
+        const line = document.createElement('div');
+        const sw = document.createElement('i'); sw.className = 'fp-sw'; sw.style.background = dash.colors[i]; sw.style.marginRight = '6px';
+        line.append(sw, document.createTextNode(`${name}: ${fpFmt.int(d[k])}`));
+        tip.appendChild(line);
+      });
+      tip.hidden = false;
+      const box = el.getBoundingClientRect();
+      const xPos = Math.min(ev.clientX - box.left + 12, box.width - tip.offsetWidth - 4);
+      tip.style.left = Math.max(0, xPos) + 'px';
+      tip.style.top = Math.max(0, ev.clientY - box.top - tip.offsetHeight - 8) + 'px';
+    })
+    .on('mouseleave', () => { tip.hidden = true; });
+});
+</script>

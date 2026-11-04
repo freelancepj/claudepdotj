@@ -1,0 +1,27 @@
+[
+ {
+  "window": "Last 7 days · 28 Oct to 4 Nov (today so far)",
+  "updated_ist": "4 Nov, 11:09 AM IST",
+  "spend": 6538.29,
+  "revenue": 2495,
+  "paid_people": 5,
+  "paid_orders": 5,
+  "meta_purchases": 5,
+  "abandoned_people": 1,
+  "abandoned_value": 499,
+  "bump_orders": 0,
+  "popup_people": 7,
+  "popup_entries": 18,
+  "skill_first_try": 4,
+  "switched_to_skill": 2,
+  "switchers_paid": 2,
+  "no_skill_blocked": 1,
+  "popup_opens": null,
+  "popup_openers": null,
+  "clarity_sessions": null,
+  "scroll_depth_pct": null,
+  "dead_clicks": null,
+  "rage_clicks": null,
+  "mobile_share_pct": null
+ }
+]

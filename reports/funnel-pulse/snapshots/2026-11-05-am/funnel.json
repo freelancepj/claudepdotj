@@ -1,0 +1,50 @@
+[
+ {
+  "order": 1,
+  "step": "Outbound clicks",
+  "people": 265,
+  "source": "Meta"
+ },
+ {
+  "order": 2,
+  "step": "Landing page views",
+  "people": 231,
+  "source": "Meta"
+ },
+ {
+  "order": 3,
+  "step": "Opened the pop-up",
+  "people": null,
+  "source": "Clarity"
+ },
+ {
+  "order": 4,
+  "step": "Filled the pop-up",
+  "people": 12,
+  "source": "GHL"
+ },
+ {
+  "order": 5,
+  "step": "Said they have a skill",
+  "people": 11,
+  "source": "GHL"
+ },
+ {
+  "order": 6,
+  "step": "Reached checkout",
+  "people": 9,
+  "source": "GHL"
+ },
+ {
+  "order": 7,
+  "step": "Paid",
+  "people": 7,
+  "source": "GHL"
+ },
+ {
+  "order": 8,
+  "step": "Took the order bump",
+  "people": 0,
+  "source": "GHL"
+ }
+]

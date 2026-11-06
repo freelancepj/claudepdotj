@@ -31,6 +31,8 @@ NO_SKILL_ANSWERS = {"i don't have a skill yet"}        # every other answer = ha
 ANSWER_ORDER = ["More than 5 years", "2 to 5 years", "Less than 2 years", "I don't have a skill yet"]
 BUMP_MIN_AMOUNT = 999                                  # ₹499 main, ₹1,498 with bump
 IST = dt.timedelta(hours=5, minutes=30)
+# Ad link (utm_campaign) names that differ from the Meta campaign name
+CAMPAIGN_ALIASES = {"DP Diwali": "DP Diwali 3HROBB"}
 # ---------------------------------------------------------------------------
 
 
@@ -113,6 +115,7 @@ def main():
         p = people.setdefault(e, {"day": ist_day(s["createdAt"]), "answers": [], "campaign": None})
         p["answers"].append(norm(ans))
         c = ed.get("campaign") or (ed.get("url_params") or {}).get("utm_campaign")
+        c = CAMPAIGN_ALIASES.get((c or "").strip(), c)
         if c and "{{" in c:
             c = "Broken ad tag (shows {{campaign.name}})"
         p["campaign"] = p["campaign"] or c

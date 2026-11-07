@@ -101,6 +101,9 @@ def main():
         seen.add(key)
         meta.append(r)
 
+    # Ad links sometimes carry the Meta campaign ID instead of its name
+    id_to_name = {str(r.get("id")): r.get("name") for r in meta if r.get("id")}
+
     # ---- GHL pop-up --------------------------------------------------------
     people = {}
     entries_by_answer = collections.Counter()
@@ -116,6 +119,7 @@ def main():
         p["answers"].append(norm(ans))
         c = ed.get("campaign") or (ed.get("url_params") or {}).get("utm_campaign")
         c = CAMPAIGN_ALIASES.get((c or "").strip(), c)
+        c = id_to_name.get((c or "").strip(), c)
         if c and "{{" in c:
             c = "Broken ad tag (shows {{campaign.name}})"
         p["campaign"] = p["campaign"] or c
